@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import Layout from './components/layout'
+import './App.css'
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+import firebase from 'firebase'
+import config from './firebaseConfig'
+import 'firebase/auth'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+firebase.initializeApp(config)
+
+const uiConfig = {
+  signInFlow: 'popup',
+  signInSuccessUrl: '/signedIn',
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  ]
 }
 
-export default App;
+const App = () => (
+  <Layout>
+    <div className="pt-20">
+      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+    </div>
+  </Layout>
+)
+
+export default App
