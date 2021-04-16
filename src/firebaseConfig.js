@@ -1,4 +1,8 @@
-const config = {
+
+import firebase from 'firebase'
+import { createFirestoreInstance } from 'redux-firestore'
+
+const fbConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
   authDomain: process.env.REACT_APP_AUTHDOMAIN,
   databaseURL: process.env.REACT_APP_DATABASEURL,
@@ -9,4 +13,19 @@ const config = {
   measurementId: process.env.REACT_APP_MEASUREMENTID
 }
 
-export default config
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true
+}
+
+const rrfProps = store => ({
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance
+})
+
+export {
+  fbConfig,
+  rrfProps
+}

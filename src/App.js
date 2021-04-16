@@ -1,27 +1,24 @@
+import { Provider } from 'react-redux'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { fbConfig, rrfProps }  from './firebaseConfig'
+import store from './store'
+import firebase from 'firebase'
+import FirebaseAuth from './components/Firebase/Auth'
 import Layout from './components/layout'
 import './App.css'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import firebase from 'firebase'
-import config from './firebaseConfig'
-import 'firebase/auth'
 
-firebase.initializeApp(config)
-
-const uiConfig = {
-  signInFlow: 'popup',
-  signInSuccessUrl: '/signedIn',
-  signInOptions: [
-    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-  ]
-}
+firebase.apps.length || firebase.initializeApp(fbConfig )
 
 const App = () => (
-  <Layout>
-    <div className="pt-20">
-      <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-    </div>
-  </Layout>
+  <Provider store={store}>
+    <ReactReduxFirebaseProvider {...rrfProps(store)}>
+      <Layout>
+        <div className="pt-20">
+          <FirebaseAuth />
+        </div>
+      </Layout>
+    </ReactReduxFirebaseProvider>
+  </Provider>
 )
 
 export default App
