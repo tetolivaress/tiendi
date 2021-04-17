@@ -17,7 +17,7 @@ const Home = () => {
     return firestore.collection('clothes').add(form)
   }
 
-  const handleFile = (e, width = 640) => {
+  const handleFile = (e, width = 480) => {
 
     const reader = new FileReader()
     reader.onload = e => {
@@ -83,7 +83,7 @@ const Home = () => {
       </select>
       <button className="bg-green-200">Guardar</button>
 
-      <img src={form.image} className="w-1/2 max-h-8"/>
+      <img src={form.image} className="w-1/2"/>
 
     </form>
   )
