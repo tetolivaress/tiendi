@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
-import { fbConfig, rrfProps }  from './firebaseConfig'
+import { fbConfig, rrfProps }  from './FirebaseConfig'
 import store from './store'
 import firebase from 'firebase'
 import Layout from './components/layout'
