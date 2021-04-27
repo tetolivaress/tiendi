@@ -7,8 +7,10 @@ import Layout from './components/layout'
 import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import Home from './components/Home'
+import Home from './components/home'
+import WareHouse from './components/warehouse'
 import FirebaseAuth from './components/Firebase/Auth'
+import Carousel from './components/carousel'
 
 
 firebase.apps.length || firebase.initializeApp(fbConfig )
@@ -19,10 +21,10 @@ const App = () => (
       <BrowserRouter>
         <Layout>
           <Switch>
-            <div className="pt-20">
               <Route exact path="/" component={Home}/>
               <Route exact path="/login" component={FirebaseAuth}/>
-            </div>
+              <Route exact path="/warehouse" component={WareHouse}/>
+              <Route exact path="/carousel" component={Carousel}/>
           </Switch>
         </Layout>
       </BrowserRouter>

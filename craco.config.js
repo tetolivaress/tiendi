@@ -1,3 +1,5 @@
+const CracoAlias = require("craco-alias")
+
 module.exports = {
   style: {
     postcss: {
@@ -7,4 +9,17 @@ module.exports = {
       ],
     },
   },
+  plugins: [
+    {
+      plugin: CracoAlias,
+      options: {
+        source: "options",
+        baseUrl: "./",
+        aliases: {
+          "@components": "./src/components",
+          "@actions": "./src/actions"
+        }
+      }
+    }
+  ]
 }
