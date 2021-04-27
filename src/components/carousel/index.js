@@ -1,33 +1,44 @@
-import { useState } from "react"
 import ClothingDetail from '@components/home/ClothingDetail'
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/outline'
+import { useRef } from 'react'
 
-const Carousel = ({ cards, amountCards }) => {
+const Carousel = ({ cards, cardsAmount }) => {
 
-  let [selectedCard, setSelectedCard] = useState(0)
-  // const [, setAmountCards] = useState(1)
+  let carousel = useRef(null)
 
-  const changeSelectedCard = (i) => {  
-  if(i < 0) return setSelectedCard(cards.length-1)
-  i < cards.length
-    ? setSelectedCard(i)
-    : setSelectedCard(0)
+  const rScroll = () => {
+    const { current: { scrollLeft,scrollWidth, clientWidth }} = carousel
+    carousel.current.scrollLeft = scrollLeft == (scrollWidth - clientWidth)
+      ? 0
+      : scrollLeft + clientWidth / cardsAmount
+  }
+
+  const lSscroll = () => {
+    const { current: { scrollLeft, clientWidth, scrollWidth } } = carousel
+    carousel.current.scrollLeft = scrollLeft
+      ? scrollLeft - clientWidth / cardsAmount
+      : scrollWidth
   }
 
   return (
     <div className="relative">
-      <div 
-        onClick={()=>changeSelectedCard(--selectedCard)}
-        className="cursor-pointer absolute left-0 top-1/2"
-      >
-        prev
+      <ChevronLeftIcon
+        className="w-5 h-5 text-green-800 absolute top-1/2 left-2 cursor-pointer"
+        onClick={lSscroll}
+    />
+      <ChevronRightIcon
+        className="w-5 h-5 text-green-800 absolute top-1/2 right-2 cursor-pointer"
+        onClick={rScroll}  
+      />
+      <div className="flex flex-nowrap overflow-hidden" ref={carousel}>
+        {
+          cards.length && cards.map((card, i) => (
+            <div className={cardsAmount > 1 ? `min-w-1/${cardsAmount}` : 'min-w-full'}>
+              <ClothingDetail clothing={cards[i]} cardsAmount={1} />
+            </div>
+          ))
+        }
       </div>
-      <div 
-        onClick={()=>changeSelectedCard(++selectedCard)}
-        className="cursor-pointer absolute right-0 top-1/2"
-      >
-        next
-      </div>
-      {cards.length && <ClothingDetail clothing={cards[selectedCard]} />}
     </div>
   )
 }

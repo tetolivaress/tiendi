@@ -11,13 +11,7 @@ const Home = () => {
 
   return (
     <>
-      {clothes && <Carousel cards={clothes} amountCards={1}/>}
-      <div className="w-screen grid grid-cols-2 md:grid-cols-5 grid-rows-5 gap-2 md:gap-4 px-8">
-        {
-          clothes && clothes.map((clothing, i) => <ClothingDetail key={i} clothing={clothing} />)
-        }
-      
-      </div>
+      {clothes && <Carousel cards={clothes} cardsAmount={3}/>}
     </>
   )
 }
