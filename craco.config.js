@@ -17,7 +17,8 @@ module.exports = {
         baseUrl: "./",
         aliases: {
           "@components": "./src/components",
-          "@actions": "./src/actions"
+          "@actions": "./src/actions",
+          "@utils": "./src/utils"
         }
       }
     }
