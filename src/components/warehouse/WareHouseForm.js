@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { useFirestore } from 'react-redux-firebase'
+import { useSelector } from "react-redux"
+import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import readFileAsync from '../../utils/FileReader'
 import resizeImage from '../../utils/ImageReader'
 
@@ -11,6 +12,13 @@ const WareHouseForm = () => {
     image: '',
     category: ''
   })
+
+  
+  useFirestoreConnect([
+    { collection: 'tiendicategories' }
+  ])
+
+  const categories = useSelector((state) => state.firestore.ordered.tiendicategories)
 
   const handleChange = ({target: { name, value }}) => setForm({...form, [name]: value})
 
@@ -70,9 +78,9 @@ const WareHouseForm = () => {
           value={form.category}
           onChange={handleChange}
         >
-          <option>blusa</option>
-          <option>pantalon</option>
-          <option>vestido</option>
+          {
+            categories.map(({ id, name }) => <option value={id}>{name}</option>)
+          }
         </select>
         <button className="bg-green-200">Guardar</button>
       </form>
