@@ -7,12 +7,11 @@ import Layout from './components/layout'
 import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
-import Home from './components/home'
-import WareHouse from './components/warehouse'
+import Home from '@pages'
+import WareHouse from '@pages/warehouse'
 import FirebaseAuth from './components/Firebase/Auth'
-import Carousel from './components/carousel'
-import Categories from './components/categories'
-import AddCategory from './components/categories/AddCategory'
+import Categories from '@pages/categories'
+import AddCategory from '@pages/categories/AddCategory'
 
 
 firebase.apps.length || firebase.initializeApp(fbConfig )
@@ -26,7 +25,6 @@ const App = () => (
             <Route exact path="/" component={Home}/>
             <Route exact path="/login" component={FirebaseAuth}/>
             <Route exact path="/warehouse" component={WareHouse}/>
-            <Route exact path="/carousel" component={Carousel}/>
             <Route exact path="/categories" component={Categories}/>
             <Route exact path="/categories/add" component={AddCategory}/>
           </Switch>

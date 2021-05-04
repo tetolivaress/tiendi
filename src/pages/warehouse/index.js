@@ -1,4 +1,4 @@
-import WareHouseForm from './WareHouseForm'
+import WareHouseForm from '@components/warehouse/WareHouseForm'
 
 const WareHouse = () => {
 

@@ -1,4 +1,4 @@
-import CategoriesList from './CategoriesList'
+import CategoriesList from '@components/categories/CategoriesList'
 
 const Categories = () => <CategoriesList />
 

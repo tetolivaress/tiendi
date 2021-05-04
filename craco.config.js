@@ -18,7 +18,8 @@ module.exports = {
         aliases: {
           "@components": "./src/components",
           "@actions": "./src/actions",
-          "@utils": "./src/utils"
+          "@utils": "./src/utils",
+          "@pages": "./src/pages"
         }
       }
     }

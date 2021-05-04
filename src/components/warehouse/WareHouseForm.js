@@ -79,7 +79,7 @@ const WareHouseForm = () => {
           onChange={handleChange}
         >
           {
-            categories.map(({ id, name }) => <option value={id}>{name}</option>)
+            categories && categories.map(({ id, name }) => <option value={id}>{name}</option>)
           }
         </select>
         <button className="bg-green-200">Guardar</button>
