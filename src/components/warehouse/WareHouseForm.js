@@ -1,8 +1,13 @@
 import { useState } from "react"
 import { useSelector } from "react-redux"
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import ClothingDetail from '@components/clothes/ClothingDetail'
+
 import readFileAsync from '../../utils/FileReader'
 import resizeImage from '../../utils/ImageReader'
+import { PlusIcon, XIcon } from "@heroicons/react/outline"
 
 const WareHouseForm = () => {
   const firestore = useFirestore()
@@ -10,25 +15,33 @@ const WareHouseForm = () => {
     title: '',
     price: '',
     image: '',
-    category: ''
+    category: '',
+    description: '',
+    details: '',
+    available: true,
+    discount: 0,
+    colors: [],
+    sizes: [],
+    sizeField: ''
   })
 
-  
   useFirestoreConnect([
     { collection: 'tiendicategories' }
   ])
 
-  const categories = useSelector((state) => state.firestore.ordered.tiendicategories)
+  const categories = useSelector(({ firestore }) => firestore.ordered.tiendicategories)
 
-  const handleChange = ({target: { name, value }}) => setForm({...form, [name]: value})
+  const handleChange = ({target: { name, value, type, checked }}) =>
+    type === 'checkbox'
+     ? setForm({...form, [name]: checked})
+     : setForm({...form, [name]: value})
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    return firestore.collection('clothes').add(form)
+    await firestore.collection('clothes').add(form)
   }
 
   const handleImage = async (e) => {
-    console.log('Loading Image')
     try{
       const file = await readFileAsync(e.target.files[0])
       const image = await resizeImage(file)
@@ -39,10 +52,14 @@ const WareHouseForm = () => {
     }
   }
 
+  const handleColors = ({target: { value }}) => {
+    setForm({...form, colors: [...form.colors, value]})
+  }
+
   return (
     <div className="w-screen grid grid-cols-1 md:grid-cols-2">
       <form
-        className="h-96 p-12 text-center flex justify-center flex-col grid"
+        className="text-center flex justify-center flex-col p-8"
         onSubmit={handleSubmit}
       >
         <input
@@ -58,6 +75,14 @@ const WareHouseForm = () => {
           type="number"
           placeholder="price"
           value={form.price}
+          onChange={handleChange}
+        />
+        <input
+          className="my-2 p-4 bg-gray-300"
+          name="discount"
+          type="number"
+          placeholder="discount"
+          value={form.discount}
           onChange={handleChange}
         />
         <label htmlFor="image" className="bg-red-500 m-5 p-5 hover:transform hover:scale-105 transition-all duration-150S">
@@ -79,17 +104,109 @@ const WareHouseForm = () => {
           onChange={handleChange}
         >
           {
-            categories && categories.map(({ id, name }) => <option value={id}>{name}</option>)
+            categories && categories.map(({ id, name }) => <option key={id} value={id}>{name}</option>)
           }
         </select>
+        <textarea
+          className="my-2 p-4 bg-gray-300 h-24"
+          name="description"
+          rows={3}
+          placeholder="description"
+          value={form.description}
+          onChange={handleChange}
+        />
+
+        <CKEditor
+          editor={ ClassicEditor }
+          data={form.details}
+          onChange={ ( event, editor ) => setForm({...form, details: editor.getData()}) }
+        />
+        
+        <div>
+          <div>
+            <input
+              className="my-2 p-4 bg-gray-300"
+              name="colors"
+              type="color"
+              placeholder="colors"
+              value={form.colors}
+              onChange={handleColors}
+            />
+            <div>
+              {
+                form.colors.map(color => <span className="h-4 w-4" style={{backgroundColor:color}}></span>)
+              }
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-2">
+            {
+              form.colors.map(color => (
+                <div className="h-6 w-6 p-6 relative rounded-lg" style={{backgroundColor:color}}>
+                  <XIcon
+                    className="absolute top-0 right-0 w-6 h-6 text-white bg-opacity-50 bg-black cursor-pointer rounded-bl-lg rounded-tr-lg"
+                    onClick={() => {
+                      setForm({...form, colors: [...form.colors.filter(c=>c!==color)]})
+                    }}
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <div className="flex">
+            <input
+              className="my-2 p-4 bg-gray-300 flex-grow"
+              name="sizeField"
+              type="text"
+              placeholder="sizes"
+              value={form.sizeField}
+              onChange={handleChange}
+            />
+            <div
+              className="bg-red-600 p-8"
+              onClick={()=> setForm({...form, sizes: [...form.sizes, form.sizeField]})}
+            >
+              <PlusIcon className="w-8 h-8 text-white" />
+            </div>
+          </div>
+          <div className="grid grid-cols-6 gap-4">
+            {
+              form.sizes.map(size => (
+                <div className="bg-gray-200 p-4 relative">
+                  <span>{size}</span>
+                  <XIcon
+                    className="absolute top-0 right-0 w-6 h-6 text-white bg-opacity-50 bg-black cursor-pointer rounded-bl-lg rounded-tr-lg"
+                    onClick={() => {
+                      setForm({...form, sizes: [...form.sizes.filter(s=>s!==size)]})
+                    }}
+                  />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <div>
+          <label htmlFor="available">
+            Disponible
+          </label>
+          <input
+            className="my-2 p-4 bg-gray-300"
+            name="available"
+            id="available"
+            type="checkbox"
+            placeholder="available"
+            checked={form.available}
+            onChange={handleChange}
+          />
+        </div>
+
         <button className="bg-green-200">Guardar</button>
       </form>
-      
-      <div>
-        <p className="texr-gray-800 mt-5">{form.title}</p>
-        <img src={form.image} alt="asd" className="mx-10 my-2"/>
-        <p className="texr-gray-800">{form.price}</p>
-        <p className="texr-gray-800">{form.category}</p>
+      <div className="m-12 p-12">
+        <ClothingDetail clothing={form}/>
       </div>
     </div>
   )
