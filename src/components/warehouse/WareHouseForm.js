@@ -3,7 +3,8 @@ import { useSelector } from "react-redux"
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
-import ClothingDetail from '@components/clothes/ClothingDetail'
+import ClothingPreview from './ClothingPreview'
+import { ChromePicker  } from 'react-color';
 
 import readFileAsync from '../../utils/FileReader'
 import resizeImage from '../../utils/ImageReader'
@@ -24,10 +25,6 @@ const WareHouseForm = () => {
     sizes: [],
     sizeField: ''
   })
-
-  useFirestoreConnect([
-    { collection: 'tiendicategories' }
-  ])
 
   const categories = useSelector(({ firestore }) => firestore.ordered.tiendicategories)
 
@@ -52,8 +49,8 @@ const WareHouseForm = () => {
     }
   }
 
-  const handleColors = ({target: { value }}) => {
-    setForm({...form, colors: [...form.colors, value]})
+  const handleColors = ({ hex }) => {
+    setForm({...form, colors: [...form.colors, hex]})
   }
 
   return (
@@ -124,13 +121,11 @@ const WareHouseForm = () => {
         
         <div>
           <div>
-            <input
+            <ChromePicker 
               className="my-2 p-4 bg-gray-300"
-              name="colors"
-              type="color"
               placeholder="colors"
-              value={form.colors}
-              onChange={handleColors}
+              color={form.colors}
+              onChangeComplete={handleColors}
             />
             <div>
               {
@@ -206,7 +201,7 @@ const WareHouseForm = () => {
         <button className="bg-green-200">Guardar</button>
       </form>
       <div className="m-12 p-12">
-        <ClothingDetail clothing={form}/>
+        {/* <ClothingPreview clothing={form}/> */}
       </div>
     </div>
   )

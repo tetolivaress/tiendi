@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
-import { useFirestoreConnect  } from 'react-redux-firebase'
+import { useFirestoreConnect, isLoaded  } from 'react-redux-firebase'
 import Carousel from '@components/carousel'
+import Loading from '@components/loading'
 import ClothesList from './ClothesList'
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
 
   return (
     <>
+      <Loading isOpen={!isLoaded(clothes)} />
       {clothes && <Carousel cards={clothes} cardsAmount={2}/>}
       {
         clothes && <ClothesList clothes={clothes} /> 

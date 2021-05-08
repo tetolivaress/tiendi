@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { useFirestoreConnect } from "react-redux-firebase"
 
-const Clothing = ({ clothing }) =>{
+const ClothingPreview = ({ clothing }) => {
   
   useFirestoreConnect([
     { collection: 'tiendicategories' }
@@ -27,7 +27,7 @@ const Clothing = ({ clothing }) =>{
             />
           : <PhotographIcon className="h-1/2 w-1/2 text-gray-300" />
       }
-      <p className="text-left">{category && category.name || '' }</p>
+      <p className="text-left">{categories && clothing.category && category.name || '' }</p>
       <div className="flex justify-between">
         <p>{clothing.title}</p>
         <p>$ {clothing.price}</p>
@@ -38,4 +38,5 @@ const Clothing = ({ clothing }) =>{
     </div>
   )
 }
-export default Clothing
+
+export default ClothingPreview

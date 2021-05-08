@@ -5,7 +5,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^27.1.0",
     "@ckeditor/ckeditor5-react": "^3.0.2",
-    "@craco/craco": "^6.1.1",
+    "@craco/craco": "^6.1.2",
     "@heroicons/react": "^1.0.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
@@ -13,6 +13,7 @@
     "firebase": "^8.3.3",
     "formik": "^2.2.6",
     "react": "^17.0.2",
+    "react-color": "^2.19.3",
     "react-dom": "^17.0.2",
     "react-firebaseui": "^4.1.0",
     "react-redux": "^7.2.3",
@@ -51,7 +52,7 @@
   "devDependencies": {
     "@tailwindcss/postcss7-compat": "^2.1.0",
     "autoprefixer": "^9.8.6",
-    "craco-alias": "^2.2.0",
+    "craco-alias": "^2.3.0",
     "cypress": "^7.1.0",
     "postcss": "^7.0.35",
     "pushstate-server": "^3.1.0",
