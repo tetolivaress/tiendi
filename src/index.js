@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 
 import { Provider } from 'react-redux'
 import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
-import { fbConfig, rrfProps }  from './FirebaseConfig'
+import { fbConfig, rrfProps }  from './firebaseConfig'
 import store from './store'
 import firebase from 'firebase'
 import App from './App'
