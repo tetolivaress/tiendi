@@ -11,7 +11,6 @@ const Home = () => {
 
   return (
     <>
-      {clothes && <Carousel cards={clothes} cardsAmount={2}/>}
       {
         clothes && <ClothesList clothes={clothes} /> 
       }
