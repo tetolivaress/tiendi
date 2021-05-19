@@ -18,7 +18,7 @@ const Clothing = ({ clothing }) =>{
   },[categories, clothing])
 
   return (
-    <div className="flex flex-col align-middle text-center shadow-md m-2 md:m-4">
+    <div className="flex flex-col align-middle text-center shadow-md">
       {
         clothing.image
           ? <img src={clothing.image}
@@ -29,7 +29,7 @@ const Clothing = ({ clothing }) =>{
       }
       <p className="text-left">{category && category.name || '' }</p>
       <div className="flex justify-between">
-        <p>{clothing.title}</p>
+        <p className="text-base">{clothing.title}</p>
         <p>$ {clothing.price}</p>
       </div>
       <div dangerouslySetInnerHTML={{__html: clothing.details}}>

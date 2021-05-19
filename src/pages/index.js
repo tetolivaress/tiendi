@@ -4,16 +4,17 @@ import Carousel from '@components/carousel'
 import ClothesList from '@components/clothes/ClothesList'
 
 const Home = () => {
-  useFirestoreConnect([
-    { collection: 'clothes' } // or 'todos'
-  ])
-  const clothes = useSelector((state) => state.firestore.ordered.clothes)
+  const categories = useSelector(({ firestore }) => firestore.ordered.tiendicategories)
 
   return (
     <>
-      {clothes && <Carousel cards={clothes} cardsAmount={2}/>}
       {
-        clothes && <ClothesList clothes={clothes} /> 
+        categories && categories.map(category => (
+          <div key={category.id}>
+            <p className="text-3xl font-bold">{category.name}</p>
+            <ClothesList category={category} />
+          </div>
+        ))
       }
     </>
   )
