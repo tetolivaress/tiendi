@@ -9,7 +9,7 @@ import Categories from '@pages/categories'
 import AddCategory from '@pages/categories/Add'
 import Backoffice from '@pages/backoffice'
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
-import Loading from './components/Loading'
+import GlobalLoading from './components/GlobalLoading'
 import { useSelector } from 'react-redux'
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <>
-      <Loading isOpen={!isLoaded(categories)} />
+      <GlobalLoading isOpen={!isLoaded(categories)} />
       <BrowserRouter>
         <Layout>
           <Switch>

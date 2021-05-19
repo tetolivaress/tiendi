@@ -16,7 +16,7 @@ const WareHouseForm = () => {
     title: '',
     price: '',
     image: '',
-    category: '',
+    categoryId: '',
     description: '',
     details: '',
     available: true,
@@ -95,9 +95,9 @@ const WareHouseForm = () => {
         />
         <select
           className="my-2 p-4 bg-gray-300"
-          name="category"
+          name="categoryId"
           placeholder="category"
-          value={form.category}
+          value={form.categoryId}
           onChange={handleChange}
         >
           {
