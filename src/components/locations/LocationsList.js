@@ -1,6 +1,5 @@
 import LocationDetail from './LocationDetail'
 import AddLocationBtn from './AddLocationBtn'
-import Loading from '@components/Loading'
 import { useEffect, useState } from 'react'
 import { useFirestore } from 'react-redux-firebase'
 import { Link } from 'react-router-dom'
@@ -25,11 +24,11 @@ const LocationsList = () => {
 
   return (
     <div className="md:mx-60">
-      <p className="text-center">Tus Lugares</p>
+      <h1 className="text-center">Tus Lugares</h1>
       {
-        locations.length > 0 && locations.map(location => <LocationDetail location={location} key={location.id} />)
+        locations.length > 0 && locations.map((location, i) => <LocationDetail location={location} key={i} />)
       }
-      <Link to="/backoffice/categories/add">
+      <Link to="/backoffice/locations/add">
         <AddLocationBtn />
       </Link>
     </div>
