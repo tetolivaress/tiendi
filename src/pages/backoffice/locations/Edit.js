@@ -8,4 +8,4 @@ const EditLocation = () => {
   )
 }
 
-export default AddLocation
+export default EditLocation

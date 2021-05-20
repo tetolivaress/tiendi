@@ -10,6 +10,7 @@ import AddCategory from '@pages/categories/Add'
 import Backoffice from '@pages/backoffice'
 import Locations from '@pages/backoffice/locations'
 import AddLocation from '@pages/backoffice/locations/Add'
+import EditLocation from '@pages/backoffice/locations/Edit'
 import { useFirestoreConnect, isLoaded } from 'react-redux-firebase'
 import GlobalLoading from './components/GlobalLoading'
 import { useSelector } from 'react-redux'
@@ -33,7 +34,7 @@ const App = () => {
             <Route exact path="/backoffice/categories" component={Categories}/>
             <Route exact path="/backoffice/locations" component={Locations}/>
             <Route exact path="/backoffice/locations/add" component={AddLocation}/>
-            {/* <Route exact path="/backoffice/locations/edit/:id" component={AddLocation}/> */}
+            <Route exact path="/backoffice/locations/edit/:id" component={EditLocation}/>
             <Route exact path="/categories/add" component={AddCategory}/>
             <Route exact path="/categories/add" component={AddCategory}/>
             <Route exact path="/backoffice" component={Backoffice}/>

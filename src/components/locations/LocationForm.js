@@ -1,4 +1,5 @@
-const AddLocationForm = ({ form: { name }, onChange, onSubmit }) => {
+import { useEffect } from 'react'
+const LocationForm = ({ form: { name }, onChange, onSubmit }) => {
   return (
     <>
       <form onSubmit={onSubmit} className="flex justify-center">
@@ -18,5 +19,5 @@ const AddLocationForm = ({ form: { name }, onChange, onSubmit }) => {
     </>
   )
 }
- 
-export default AddLocationForm
+
+export default LocationForm
