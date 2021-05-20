@@ -20,7 +20,7 @@ const AddLocation = () => {
     name: ''
   })
 
-  const handleChange = (({target: { name, value, type }}) => {
+  const handleChange = (({target: { name, value }}) => {
     const fieldValue = value
 
     setForm({...form, [name]: fieldValue})

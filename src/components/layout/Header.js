@@ -3,7 +3,7 @@ import { UserIcon } from '@heroicons/react/solid'
 import { FolderIcon } from '@heroicons/react/solid'
 
 const Header = () => (
-  <nav className="flex justify-between fixed text-center font-bold top-0 bg-pink-100 text-green-700 p-4 w-full">
+  <nav className="flex justify-between fixed text-center font-bold top-0 bg-pink-100 text-green-700 p-4 w-full z-10">
     <Link to={"/"}>
       <p>Tiendi Shop Header</p>
     </Link>
