@@ -1,24 +1,25 @@
 import { useEffect, useState } from 'react'
-import { useFirestore } from 'react-redux-firebase'
 import { useParams, useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import LocationForm from '@components/locations/LocationForm'
+import { getLocation as loadLocation, updateLocation } from '@actions/locations'
 
 const EditLocation = () => {
   const [form, setForm] = useState({
     name: ''
   })
-  const firestore = useFirestore()
   const history = useHistory()
+  const dispatch = useDispatch()
   const { id } = useParams()
 
   const getLocation = async () => {
-		console.log(id)
-    const locationResponse = await firestore
-      .collection('locations')
-      .doc(id)
-      .get()
-    const location = locationResponse.data()
-    setForm(() => { return {...location, id: locationResponse.id} })
+    try {
+      const locationResponse = await dispatch(loadLocation(id))
+      const location = locationResponse.data()
+      setForm(() => { return {...location, id: locationResponse.id} })
+    } catch (error) {
+      console.error('There was an error while getting the location', error)
+    }
   }
 
   const handleChange = (({target: { name, value }}) => {
@@ -30,12 +31,7 @@ const EditLocation = () => {
   const handleSubmit = async e => {
     e.preventDefault()
     // dispatch({ type: 'SHOW_LOADING' })
-    await firestore
-      .collection('locations')
-      .doc(form.id)
-      .update({
-        name: form.name
-      })
+    await dispatch(updateLocation(form))
     history.push('/backoffice/locations')
     // await dispatch(addLocation({...form}))
   }

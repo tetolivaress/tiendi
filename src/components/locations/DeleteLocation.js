@@ -1,18 +1,22 @@
+import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
 import { useFirestore } from 'react-redux-firebase'
 import DeleteModal from '@components/shared/Modal'
+import { deleteLocation } from '@actions/locations'
+
 const DeleteLocation = ({ isOpen }) => {
   const history = useHistory()
   const firestore = useFirestore()
+  const dispatch = useDispatch()
   const { id } = useParams()
+
   const handleCloseModal = () => {
     history.push('/backoffice/locations')
   }
+
   const handleDeleteLocation = async () => {
     console.log('About to delete location: ' + id)
-    await firestore.collection('locations')
-      .doc(id)
-      .delete()
+    await dispatch(deleteLocation(id))
     history.push('/backoffice/locations')
   }
   return (

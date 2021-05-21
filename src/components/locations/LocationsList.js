@@ -1,22 +1,25 @@
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import LocationDetail from './LocationDetail'
 import AddLocationBtn from './AddLocationBtn'
-import { useEffect, useState } from 'react'
-import { useFirestore } from 'react-redux-firebase'
-import { Link } from 'react-router-dom'
+import { getLocations as loadLocations } from '@actions/locations'
 
 const LocationsList = () => {
   const [locations, setLocations] = useState([])
-  const firestore = useFirestore()
+  const dispatch = useDispatch()
 
   const getLocations = async () => {
-		setLocations([])
-    const locationsResponse = await firestore
-      .collection('locations')
-      .get()
-    locationsResponse.docs.forEach(async doc => {
-      const location = doc.data()
-      setLocations(oldLocations => [...oldLocations, {...location, id: doc.id}])
-    })
+    setLocations([])
+    try {
+      const locationsResponse = await dispatch(loadLocations())
+      locationsResponse.docs.forEach(async doc => {
+        const location = doc.data()
+        setLocations(oldLocations => [...oldLocations, {...location, id: doc.id}])
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
@@ -27,7 +30,12 @@ const LocationsList = () => {
     <div className="md:mx-60">
       <h1 className="text-center">Tus Lugares</h1>
       {
-        locations.length > 0 && locations.map((location, i) => <LocationDetail location={location} key={location.id} />)
+        locations.length > 0 && locations.map((location, i) =>
+          <LocationDetail
+            location={location}
+            key={location.id}
+          />
+        )
       }
       <Link to="/backoffice/locations/add">
         <AddLocationBtn />

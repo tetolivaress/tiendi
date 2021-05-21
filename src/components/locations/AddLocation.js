@@ -24,12 +24,14 @@ const AddLocation = () => {
     setForm({...form, [name]: fieldValue})
   })
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    // dispatch({ type: 'SHOW_LOADING' })
-    dispatch(addLocation(form))
-    history.push('/backoffice/locations')
-    // await dispatch(addLocation({...form}))
+    try {
+      await dispatch(addLocation(form))
+      history.push('/backoffice/locations')
+    } catch (error) {
+      console.error('There was an error while storing the location: ', error)
+    }
   }
 
   return (
