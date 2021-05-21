@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useFirestore } from 'react-redux-firebase'
-import LocationForm from './LocationForm'
-
 import { useHistory } from 'react-router'
+import LocationForm from './LocationForm'
+import { addLocation } from '@actions/locations'
+import { showLoading, hideLoading } from '@actions/loading'
+import { useDispatch } from 'react-redux'
 
 // import { addLocation } from '@actions'
 
@@ -10,6 +12,7 @@ const AddLocation = () => {
 
   const firestore = useFirestore()
   const history = useHistory()
+  const dispatch = useDispatch()
 
   const [form, setForm] = useState({
     name: ''
@@ -21,10 +24,10 @@ const AddLocation = () => {
     setForm({...form, [name]: fieldValue})
   })
 
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
     // dispatch({ type: 'SHOW_LOADING' })
-    await firestore.collection('locations').add(form)
+    dispatch(addLocation(form))
     history.push('/backoffice/locations')
     // await dispatch(addLocation({...form}))
   }
