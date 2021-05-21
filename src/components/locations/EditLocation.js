@@ -12,6 +12,7 @@ const EditLocation = () => {
   const { id } = useParams()
 
   const getLocation = async () => {
+		console.log(id)
     const locationResponse = await firestore
       .collection('locations')
       .doc(id)

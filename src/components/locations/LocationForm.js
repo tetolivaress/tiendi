@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 const LocationForm = ({ form: { name }, onChange, onSubmit }) => {
   return (
     <>
