@@ -10,10 +10,9 @@ const DeleteLocation = ({ isOpen }) => {
   }
   const handleDeleteLocation = async () => {
     console.log('About to delete location: ' + id)
-    const deleteLocationResponse = await firestore.collection('locations')
+    await firestore.collection('locations')
       .doc(id)
       .delete()
-    console.info(deleteLocationResponse)
     history.push('/backoffice/locations')
   }
   return (

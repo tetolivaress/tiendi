@@ -36,7 +36,7 @@ const App = () => {
             <Route exact path="/backoffice/locations" component={Locations}/>
             <Route exact path="/backoffice/locations/add" component={AddLocation}/>
             <Route exact path="/backoffice/locations/edit/:id" component={EditLocation}/>
-            <Route path="/backoffice/locations/delete/:id" component={DeleteLocation}/>
+            <Route exact path="/backoffice/locations/delete/:id" component={DeleteLocation}/>
             <Route exact path="/categories/add" component={AddCategory}/>
             <Route exact path="/categories/add" component={AddCategory}/>
             <Route exact path="/backoffice" component={Backoffice}/>

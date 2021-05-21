@@ -2,16 +2,11 @@ import { useState } from 'react'
 import { useFirestore } from 'react-redux-firebase'
 import LocationForm from './LocationForm'
 
-import readFileAsync from '@utils/FileReader'
-import resizeImage from '@utils/ImageReader'
 import { useHistory } from 'react-router'
 
 // import { addLocation } from '@actions'
-import { useDispatch } from 'react-redux'
 
 const AddLocation = () => {
-
-  const dispatch = useDispatch()
 
   const firestore = useFirestore()
   const history = useHistory()
