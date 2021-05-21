@@ -4,37 +4,19 @@ import readFileAsync from '@utils/FileReader'
 import resizeImage from '@utils/ImageReader'
 import { useHistory } from "react-router"
 
-const CategoryForm = () => {
-
-  const history = useHistory()
-
-  const [form, setForm] = useState({
-    name: '',
-    image: '',
-    order: 0
-  })
-
-  const handleChange = ({target: { name, value }}) => setForm({...form, [name]: value})
-
-  const handleSubmit = async e => {
-    e.preventDefault()
-    await firestore.collection('tiendicategories').add(form)
-    return history.push("/categories")
-  }
+const CategoryForm = ({ form, onChange, onSubmit }) => {
 
   const handleImage = async (e) => {
     console.log('Loading Image')
     try{
       const file = await readFileAsync(e.target.files[0], 80)
       const image = await resizeImage(file, 80)
-      setForm({...form, image})
       console.log('Image Ready')
+      return image
     }catch (error) {
       alert('Los archivos solo pueden ser tipo JPEG, JPG ó PNG')
     }
   }
-
-  const firestore = useFirestore()
 
   return (
     <div className="w-screen grid grid-cols-1 md:grid-cols-2">

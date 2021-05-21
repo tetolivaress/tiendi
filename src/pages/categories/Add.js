@@ -1,7 +1,7 @@
-import CategoryForm from '@components/categories/CategoryForm'
+import AddCategoryComponent from '@components/categories/AddCategory'
 
 const AddCategory = () => (
-    <CategoryForm />
-  )
+  <AddCategoryComponent />
+)
 
 export default AddCategory
