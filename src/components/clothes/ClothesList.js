@@ -1,25 +1,24 @@
-import ClothingDetail from './ClothingDetail'
-import Loading from '@components/Loading'
 import { useEffect, useState } from 'react'
 import { useFirestore } from 'react-redux-firebase'
+import { useDispatch } from 'react-redux'
+import ClothingDetail from './ClothingDetail'
+import Loading from '@components/Loading'
+import { getClothes as loadClothes } from '@actions/clothes'
 
 const ClothesList = ({ category }) => {
 
   const [clothes, setClothes] = useState([])
 
   const firestore = useFirestore()
+  const dispatch = useDispatch()
 
   const getClothes = async category => {
-    const clothesResponse = await firestore
-      .collection('clothes')
-      .where('categoryId', '==', category.id)
-      .get()
-    console.log(clothesResponse);
+    const clothesResponse = await dispatch(loadClothes(category.id))
     clothesResponse.docs.forEach(async doc => {
       const clothing = doc.data()
       setClothes(oldClothes => [...oldClothes, clothing])
     })
-  } 
+  }
 
   useEffect(() => {
     getClothes(category)
@@ -33,7 +32,7 @@ const ClothesList = ({ category }) => {
           : <Loading isOpen={true} />
       }
     </div>
-    )
+  )
 }
 
 export default ClothesList

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
@@ -8,10 +8,12 @@ import { ChromePicker  } from 'react-color';
 
 import readFileAsync from '../../utils/FileReader'
 import resizeImage from '../../utils/ImageReader'
+import { addClothes } from '@actions/clothes'
 import { PlusIcon, XIcon } from "@heroicons/react/outline"
 
 const WareHouseForm = () => {
   const firestore = useFirestore()
+  const dispatch = useDispatch()
   const [form, setForm] = useState({
     title: '',
     price: '',
@@ -35,7 +37,8 @@ const WareHouseForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    await firestore.collection('clothes').add(form)
+    const clothingResponse = await dispatch(addClothes(form))
+    // await firestore.collection('clothes').add(form)
   }
 
   const handleImage = async (e) => {

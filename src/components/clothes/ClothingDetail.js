@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { useFirestoreConnect } from "react-redux-firebase"
 
 const Clothing = ({ clothing }) =>{
-  
+
   useFirestoreConnect([
     { collection: 'tiendicategories' }
   ])
