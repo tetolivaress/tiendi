@@ -1,27 +1,25 @@
 const CategoryForm = ({ form, onChange, onSubmit }) => {
   return (
-    <div className="w-screen">
-      <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2">
+    <div className="w-screen grid md:grid-cols-3">
+      <form onSubmit={onSubmit} className="grid col-start-2">
         <input
-          className="my-2 p-4 bg-gray-300"
+          className="form-control"
           name="name"
           placeholder="name"
           value={form.name}
           onChange={onChange}
         />
-        <div>
-          <input
-            type="checkbox"
-            className="my-2 p-4 bg-gray-300"
-            name="carousel"
-            placeholder="carousel"
-            value={form.carousel}
-            onChange={onChange}
-          />
-        </div>
+        <input
+          type="checkbox"
+          className="form-control"
+          name="carousel"
+          placeholder="carousel"
+          value={form.carousel}
+          onChange={onChange}
+        />
         <input
           type="number"
-          className="my-2 p-4 bg-gray-300"
+          className="form-control"
           name="order"
           placeholder="order"
           value={form.order}
@@ -30,13 +28,13 @@ const CategoryForm = ({ form, onChange, onSubmit }) => {
         <div>
           <label
             htmlFor="image"
-            className="bg-red-500 m-5 p-5 hover:transform hover:scale-105 transition-all duration-150S"
+            className="grid bg-red-500 p-5 grow"
           >
             selecciona una imagen
           </label>
           <input
             id="image"
-            className="hidden my-2 p-4 bg-gray-300"
+            className="hidden form-control"
             name="image"
             placeholder="image"
             onChange={onChange}
@@ -44,7 +42,7 @@ const CategoryForm = ({ form, onChange, onSubmit }) => {
           />
         </div>
 
-        <button className="bg-green-200">Guardar</button>
+        <button className="bg-green-200 my-2">Guardar</button>
       </form>
     </div>
   );

@@ -63,14 +63,14 @@ const WareHouseForm = () => {
         onSubmit={handleSubmit}
       >
         <input
-          className="my-2 p-4 bg-gray-300"
+          className="form-control"
           name="title"
           placeholder="title"
           value={form.title}
           onChange={handleChange}
         />
         <input
-          className="my-2 p-4 bg-gray-300"
+          className="form-control"
           name="price"
           type="number"
           placeholder="price"
@@ -78,7 +78,7 @@ const WareHouseForm = () => {
           onChange={handleChange}
         />
         <input
-          className="my-2 p-4 bg-gray-300"
+          className="form-control"
           name="discount"
           type="number"
           placeholder="discount"
@@ -90,14 +90,14 @@ const WareHouseForm = () => {
         </label>
         <input
           id="image"
-          className="hidden my-2 p-4 bg-gray-300"
+          className="hidden form-control"
           name="image"
           placeholder="image"
           onChange={handleImage}
           type="file"
         />
         <select
-          className="my-2 p-4 bg-gray-300"
+          className="form-control"
           name="categoryId"
           placeholder="category"
           value={form.categoryId}
@@ -108,7 +108,7 @@ const WareHouseForm = () => {
           }
         </select>
         <textarea
-          className="my-2 p-4 bg-gray-300 h-24"
+          className="form-control h-24"
           name="description"
           rows={3}
           placeholder="description"
@@ -125,7 +125,7 @@ const WareHouseForm = () => {
         <div>
           <div>
             <ChromePicker 
-              className="my-2 p-4 bg-gray-300"
+              className="form-control"
               placeholder="colors"
               color={form.colors}
               onChangeComplete={handleColors}
@@ -155,7 +155,7 @@ const WareHouseForm = () => {
         <div>
           <div className="flex">
             <input
-              className="my-2 p-4 bg-gray-300 flex-grow"
+              className="form-control flex-grow"
               name="sizeField"
               type="text"
               placeholder="sizes"
@@ -191,7 +191,7 @@ const WareHouseForm = () => {
             Disponible
           </label>
           <input
-            className="my-2 p-4 bg-gray-300"
+            className="form-control"
             name="available"
             id="available"
             type="checkbox"
