@@ -16,42 +16,51 @@ const getLocations = () => {
 
 const getLocation = (id) => {
   return async (dispatch, getState, getFirebase) => {
-    return await getFirebase()
+    dispatch(showLoading())
+    const locationResponse = await getFirebase()
       .firestore()
       .collection(collectionName)
       .doc(id)
       .get()
+    dispatch(hideLoading())
+    return locationResponse
   }
 }
 
 const addLocation = (payload) => {
   return async (dispatch, getState, getFirebase) => {
-    return await getFirebase()
+    dispatch(showLoading())
+    await getFirebase()
       .firestore()
       .collection(collectionName)
       .add({...payload})
+    dispatch(hideLoading())
   }
 }
 
 const updateLocation = (payload) => {
   return async (dispatch, getState, getFirebase) => {
-    return await getFirebase()
+    dispatch(showLoading())
+    await getFirebase()
       .firestore()
       .collection('locations')
       .doc(payload.id)
       .update({
         name: payload.name
       })
+    dispatch(hideLoading())
   }
 }
 
 const deleteLocation = (id) => {
   return async (dispatch, getState, getFirebase) => {
+    dispatch(showLoading())
     await getFirebase()
       .firestore()
       .collection(collectionName)
       .doc(id)
       .delete()
+    dispatch(hideLoading())
   }
 }
 

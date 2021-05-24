@@ -24,10 +24,11 @@ const App = () => {
   ])
 
   const categories = useSelector(({ firestore }) => firestore.ordered.tiendicategories)
+  const isLoading = useSelector((state) => state.loading)
 
   return (
     <>
-      <GlobalLoading isOpen={!isLoaded(categories)} />
+      <GlobalLoading isOpen={!isLoaded(categories) || isLoading} />
       <BrowserRouter>
         <Layout>
           <Switch>

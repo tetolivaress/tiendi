@@ -3,20 +3,22 @@ import { Link } from 'react-router-dom'
 
 const LocationDetail = ({ location }) => {
   return (
-    <div className="flex justify-between items-center shadow-sm p-3 grow font-bold">
-      <div className="flex">
-        <span className="mr-3"><LocationMarkerIcon className="w-6 text-red-400" /></span>
-        <span>{location.name}</span>
+    <section className='grid grid-cols-4 shadow-sm m-4 items-center'>
+      <LocationMarkerIcon className="w-12 text-red-400" />
+      <div className='col-span-2'>
+        <h2>{location.name}</h2>
       </div>
-      <div className="flex justify-end">
-        <Link to={`/backoffice/locations/edit/${ location.id }`} className="p-1 flex">
-          <PencilIcon className="w-6 text-blue-500 cursor-pointer"></PencilIcon>
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-items-end gap-1">
+        <Link to={`/backoffice/categories/edit/${location.id}`} className="list-action-button bg-green-500 font-semibold">
+          <span>Editar</span>
+          <PencilIcon className='w-5' />
         </Link>
-        <Link to={`/backoffice/locations/delete/${ location.id }`} className="p-1 flex">
-          <XIcon className="w-6 text-blue-500 cursor-pointer" />
+        <Link to={`/backoffice/categories/delete/${location.id}`} className="list-action-button bg-red-500 font-semibold">
+          <span>Borrar</span>
+          <XIcon className='w-5' />
         </Link>
       </div>
-    </div>
+    </section>
   )
 }
 

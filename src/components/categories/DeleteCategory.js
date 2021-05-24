@@ -1,12 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router-dom'
-import { useFirestore } from 'react-redux-firebase'
 import DeleteModal from '@components/shared/Modal'
 import { deleteCategory } from '@actions/categories'
 
 const DeleteCategory = ({ isOpen }) => {
   const history = useHistory()
-  const firestore = useFirestore()
   const dispatch = useDispatch()
   const { id } = useParams()
 

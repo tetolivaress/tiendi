@@ -42,7 +42,7 @@ const EditLocation = () => {
 
   return (
     <>
-      <h1 className="text-center">Editar categoría {form.name}</h1>
+      <h1 className="text-center">Editar {form.name}</h1>
       <LocationForm form={form} toEdit onChange={handleChange} onSubmit={handleSubmit}/>
     </>
   )

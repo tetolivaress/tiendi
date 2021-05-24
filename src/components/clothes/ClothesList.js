@@ -9,7 +9,6 @@ const ClothesList = ({ category }) => {
 
   const [clothes, setClothes] = useState([])
 
-  const firestore = useFirestore()
   const dispatch = useDispatch()
 
   const getClothes = async category => {
@@ -28,7 +27,7 @@ const ClothesList = ({ category }) => {
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 relative " style={{minHeight: '200px'}}>
       {
         clothes.length
-          ? clothes.map(clothing => <ClothingDetail clothing={clothing} />)
+          ? clothes.map(clothing => <ClothingDetail clothing={clothing} key={clothing.name} />)
           : <Loading isOpen={true} />
       }
     </div>

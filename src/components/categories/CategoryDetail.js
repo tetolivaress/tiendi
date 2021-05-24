@@ -1,6 +1,5 @@
 import { PencilIcon, XIcon } from '@heroicons/react/solid'
-import { Link, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const CategoryDetail = ({ category }) => {
 
