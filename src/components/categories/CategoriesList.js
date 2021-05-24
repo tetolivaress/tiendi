@@ -19,7 +19,7 @@ const CategoriesList = () => {
     {
       categories && categories.map(category => <CategoryDetail category={category} key={category.name} />)
     }
-    <Link to="/categories/add">
+    <Link to="/backoffice/categories/add">
       <AddCategory />
     </Link>
    </div>

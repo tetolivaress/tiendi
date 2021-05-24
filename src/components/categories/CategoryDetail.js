@@ -11,7 +11,9 @@ const CategoryDetail = ({ category }) => {
         <h2>{category.name}</h2>
         <h2>jajaja</h2>
       </div>
-      <Link to={`/backoffice/categories/edit/${category.id}`}><PencilIcon className='w-5'></PencilIcon></Link>
+      <Link to={`/backoffice/categories/edit/${category.id}`}>
+        <PencilIcon className='w-5' />
+      </Link>
     </section>
   )
 }

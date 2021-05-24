@@ -1,6 +1,6 @@
 import { showLoading, hideLoading } from '@actions/loading'
 
-const collectionName = 'categories'
+const collectionName = 'tiendicategories'
 
 const getCategories = () => {
   return async (dispatch, getState, getFirebase) => {
@@ -37,10 +37,12 @@ const updateCategory = (payload) => {
   return async (dispatch, getState, getFirebase) => {
     return await getFirebase()
       .firestore()
-      .collection('locations')
+      .collection(collectionName)
       .doc(payload.id)
       .update({
-        name: payload.name
+        name: payload.name,
+        order: payload.order,
+        image: payload.image
       })
   }
 }

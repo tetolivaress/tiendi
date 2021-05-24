@@ -1,12 +1,12 @@
-import CategoryForm from "@components/categories/CategoryForm";
+import EditCategoryComponent from "@components/categories/EditCategory"
 
 const EditCategory = () => {
   return (
     <>
       <h1>Edit Category Page</h1>
-      <CategoryForm />
+      <EditCategoryComponent />
     </>
   )
 }
  
-export default EditCategory;
+export default EditCategory
