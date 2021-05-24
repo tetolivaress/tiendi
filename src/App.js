@@ -8,6 +8,7 @@ import FirebaseAuth from './components/Firebase/Auth'
 import Categories from '@pages/categories'
 import AddCategory from '@pages/categories/Add'
 import EditCategory from '@pages/categories/Edit'
+import DeleteCategory from '@components/categories/DeleteCategory'
 import Backoffice from '@pages/backoffice'
 import Locations from '@pages/backoffice/locations'
 import AddLocation from '@pages/backoffice/locations/Add'
@@ -40,6 +41,7 @@ const App = () => {
             <Route exact path="/backoffice/locations/delete/:id" component={DeleteLocation}/>
             <Route exact path="/backoffice/categories/add" component={AddCategory}/>
             <Route exact path="/backoffice/categories/edit/:id" component={EditCategory}/>
+            <Route exact path="/backoffice/categories/delete/:id" component={DeleteCategory}/>
             <Route exact path="/backoffice" component={Backoffice}/>
           </Switch>
         </Layout>

@@ -1,4 +1,5 @@
 import { showLoading, hideLoading } from '@actions/loading'
+import { getClothes } from '@actions/clothes'
 
 const collectionName = 'tiendicategories'
 
@@ -49,11 +50,18 @@ const updateCategory = (payload) => {
 
 const deleteCategory = (id) => {
   return async (dispatch, getState, getFirebase) => {
-    await getFirebase()
-      .firestore()
-      .collection(collectionName)
-      .doc(id)
-      .delete()
+    try {
+      const clothes = await dispatch(getClothes(id))
+      if (clothes.docs.length)
+        console.info('You can only delete Empty Categories');
+      await getFirebase()
+        .firestore()
+        .collection(collectionName)
+        .doc(id)
+        .delete()
+    } catch (error) {
+      console.error(error)
+    }
   }
 }
 

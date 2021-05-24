@@ -10,6 +10,10 @@
   .list-image {
     @apply w-20 h-20 max-h-20 object-cover
   }
+
+  .list-action-button {
+    @apply flex justify-between px-4 py-2 text-white text-sm rounded-md
+  }
 }
 
 @layer utilities {
