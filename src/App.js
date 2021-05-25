@@ -37,7 +37,7 @@ const App = () => {
             <Route exact path="/" component={Home}/>
             <Route exact path="/login" component={FirebaseAuth}/>
             <Route exact path="/warehouse" component={WareHouse}/>
-            <Route exact path="/warehouse/add" component={AddClothing}/>
+            <Route exact path="/backoffice/warehouse/add" component={AddClothing}/>
             <Route exact path="/backoffice/categories" component={Categories}/>
             <Route exact path="/backoffice/locations" component={Locations}/>
             <Route exact path="/backoffice/locations/add" component={AddLocation}/>

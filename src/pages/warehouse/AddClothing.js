@@ -1,4 +1,4 @@
-import AddClothingComponent from '@components/warehouse/AddClothing'
+import AddClothingComponent from '@components/clothes/AddClothing'
 
 const AddClothing = () => {
   return (

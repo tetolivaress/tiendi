@@ -4,6 +4,8 @@ import { useFirestore, useFirestoreConnect } from 'react-redux-firebase'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import ClothingPreview from './ClothingPreview'
+import ClothingColorPicker from '@components/clothes/children/ClothingColorPicker'
+import ClothingSizeInput from '@components/clothes/children/ClothingSizeInput'
 import { ChromePicker  } from 'react-color';
 
 import readFileAsync from '../../utils/FileReader'
@@ -35,6 +37,10 @@ const WareHouseForm = () => {
      ? setForm({...form, [name]: checked})
      : setForm({...form, [name]: value})
 
+  const handleDetailChange = ({ target }, editor) => {
+    setForm({...form, details: editor.getData()})
+  }
+
   const handleSubmit = async e => {
     e.preventDefault()
     const clothingResponse = await dispatch(addClothes(form))
@@ -52,8 +58,12 @@ const WareHouseForm = () => {
     }
   }
 
-  const handleColors = ({ hex }) => {
-    setForm({...form, colors: [...form.colors, hex]})
+  const handleChangeColor = (colors) => {
+    setForm({...form, colors: colors})
+  }
+
+  const handleChangeSize = (sizes) => {
+    setForm({...form, sizes})
   }
 
   return (
@@ -119,10 +129,11 @@ const WareHouseForm = () => {
         <CKEditor
           editor={ ClassicEditor }
           data={form.details}
-          onChange={ ( event, editor ) => setForm({...form, details: editor.getData()}) }
+          // onChange={ ( event, editor ) => setForm({...form, details: editor.getData()}) }
+          onChange={(event, editor) => { handleDetailChange(event, editor) }}
         />
-        
-        <div>
+        <ClothingColorPicker  handleChangeColor={handleChangeColor} />
+        {/* <div>
           <div>
             <ChromePicker 
               className="form-control"
@@ -150,9 +161,9 @@ const WareHouseForm = () => {
               ))
             }
           </div>
-        </div>
-
-        <div>
+        </div> */}
+        <ClothingSizeInput handleChangeSize={handleChangeSize} />
+        {/* <div>
           <div className="flex">
             <input
               className="form-control flex-grow"
@@ -184,7 +195,7 @@ const WareHouseForm = () => {
               ))
             }
           </div>
-        </div>
+        </div> */}
 
         <div>
           <label htmlFor="available">
