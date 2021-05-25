@@ -14,6 +14,10 @@
   .list-action-button {
     @apply flex justify-between px-4 py-2 text-white text-sm rounded-md
   }
+
+  .floating-button {
+    @apply fixed bottom-4 right-4 md:bottom-8 md:right-8 p-3 md:p-6 bg-blue-800 rounded-full
+  }
 }
 
 @layer utilities {

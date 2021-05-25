@@ -1,8 +1,8 @@
 const LocationForm = ({ form: { name }, onChange, onSubmit }) => {
   return (
     <>
-      <form onSubmit={onSubmit} className="flex justify-center">
-        <div className="flex flex-col items-center">
+      <form onSubmit={onSubmit} className="w-screen px-2">
+        <div className="flex flex-col">
           <input
             type="text"
             name="name"
@@ -12,7 +12,7 @@ const LocationForm = ({ form: { name }, onChange, onSubmit }) => {
             className="form-control"
             required
           />
-          <button className="bg-green-500 p-2 rounded-md font-bold w-1/2 grow text-white">Guardar</button>
+          <button className="bg-green-500 p-2 rounded-md font-bold grow text-white m-auto">Guardar</button>
         </div>
       </form>
     </>
