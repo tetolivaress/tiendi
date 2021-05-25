@@ -40,7 +40,7 @@ const AddCategory = () => {
 
   return (
     <>
-      <h1>Agregar una nueva Categoría</h1>
+      <h1 className="text-center">Nueva Categoría</h1>
       <CategoryForm
         onChange={handleChange}
         onSubmit={handleSubmit}

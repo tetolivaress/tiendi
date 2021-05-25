@@ -30,7 +30,7 @@ const WareHouseForm = () => {
 
   const categories = useSelector(({ firestore }) => firestore.ordered.tiendicategories)
 
-  const handleChange = ({target: { name, value, type, checked }}) =>
+  const handleChange = ({target: { name, value, type, checked }, editor}) =>
     type === 'checkbox'
      ? setForm({...form, [name]: checked})
      : setForm({...form, [name]: value})

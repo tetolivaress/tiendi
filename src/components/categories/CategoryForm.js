@@ -1,27 +1,29 @@
 const CategoryForm = ({ form, onChange, onSubmit }) => {
   return (
-    <div className="w-screen grid md:grid-cols-3">
-      <form onSubmit={onSubmit} className="grid col-start-2">
+    <div className="w-screen px-2 md:w-1/4 md:m-auto">
+      <form onSubmit={onSubmit} className="grid grid-cols-1 md:col-start-2">
         <input
           className="form-control"
           name="name"
-          placeholder="name"
+          placeholder="Nombre"
           value={form.name}
           onChange={onChange}
         />
-        <input
-          type="checkbox"
-          className="form-control"
-          name="carousel"
-          placeholder="carousel"
-          value={form.carousel}
-          onChange={onChange}
-        />
+        <div>
+          <input
+            type="checkbox"
+            className="form-control  mr-4"
+            name="carousel"
+            value={form.carousel}
+            onChange={onChange}
+          />
+          <label className="font-bold">Tiene Carrusel</label>
+        </div>
         <input
           type="number"
           className="form-control"
           name="order"
-          placeholder="order"
+          placeholder="Posición"
           value={form.order}
           onChange={onChange}
         />
@@ -42,7 +44,7 @@ const CategoryForm = ({ form, onChange, onSubmit }) => {
           />
         </div>
 
-        <button className="bg-green-200 my-2">Guardar</button>
+        <button className="bg-green-200 p-5 my-2">Guardar</button>
       </form>
     </div>
   );

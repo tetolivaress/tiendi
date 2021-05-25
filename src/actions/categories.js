@@ -60,13 +60,13 @@ const deleteCategory = (id) => {
     try {
       dispatch(showLoading())
       const clothes = await dispatch(getClothes(id))
-      if (clothes.docs.length)
-        console.info('You can only delete Empty Categories');
-      await getFirebase()
-        .firestore()
-        .collection(collectionName)
-        .doc(id)
-        .delete()
+      if (!clothes.docs.length)
+        return await getFirebase()
+          .firestore()
+          .collection(collectionName)
+          .doc(id)
+          .delete()
+      console.log('You can only delete empty categories')
       dispatch(hideLoading())
     } catch (error) {
       console.error(error)
