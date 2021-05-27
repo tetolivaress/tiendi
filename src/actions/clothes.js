@@ -10,6 +10,26 @@ const getClothes = (categoryId) => {
       .collection(collectionName)
       .where('categoryId', '==', categoryId)
       .get()
+    dispatch({ type: 'LOAD_CLOTHES', payload: 
+      {
+        categoryId: categoryId,
+        docs: clothesResponse.docs
+      }
+    })
+    dispatch(hideLoading())
+    return clothesResponse
+  }
+}
+
+const getAllClothes = () => {
+  return async (dispatch, getState, getFirebase) => {
+    dispatch(showLoading())
+    const clothesResponse = await getFirebase()
+      .firestore()
+      .collection(collectionName)
+      .get()
+
+    dispatch({ type: 'LOAD_CLOTHES', payload: clothesResponse.docs })
     dispatch(hideLoading())
     return clothesResponse
   }
@@ -69,6 +89,7 @@ export {
   addClothes,
   deleteClothes,
   getClothes,
+  getAllClothes,
   getClothing,
   updateClothes
 }

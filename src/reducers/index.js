@@ -3,9 +3,11 @@ import { firestoreReducer } from 'redux-firestore'
 import { combineReducers } from 'redux'
 
 import loading from './loading'
+import clothes from './clothes'
 
 export default combineReducers ({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
-  loading
+  loading,
+  clothes
 })
