@@ -26,7 +26,7 @@ const ClothesList = ({ category }) => {
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 relative " style={{minHeight: '200px'}}>
       {
         clothes.length
-          ? clothes.map(clothing => <ClothingDetail clothing={clothing} key={clothing.name} />)
+          ? clothes.map((clothing, i) => <ClothingDetail clothing={clothing} key={clothing.title+i} />)
           : <Loading isOpen={true} />
       }
     </div>
