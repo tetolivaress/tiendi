@@ -1,6 +1,4 @@
 import { useSelector } from 'react-redux'
-import { useFirestoreConnect  } from 'react-redux-firebase'
-import Carousel from '@components/carousel'
 import ClothesList from '@components/clothes/ClothesList'
 
 const Home = () => {

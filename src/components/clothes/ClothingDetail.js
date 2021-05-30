@@ -27,7 +27,7 @@ const Clothing = ({ clothing }) =>{
             />
           : <PhotographIcon className="h-1/2 w-1/2 text-gray-300" />
       }
-      <p className="text-left">{category && category.name || '' }</p>
+      <p className="text-left">{category && category.name}</p>
       <div className="flex justify-between">
         <p className="text-base">{clothing.title}</p>
         <p>$ {clothing.price}</p>

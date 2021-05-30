@@ -12,16 +12,6 @@ const EditLocation = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
 
-  const getLocation = async () => {
-    try {
-      const locationResponse = await dispatch(loadLocation(id))
-      const location = locationResponse.data()
-      setForm(() => { return {...location, id: locationResponse.id} })
-    } catch (error) {
-      console.error('There was an error while getting the location', error)
-    }
-  }
-
   const handleChange = (({target: { name, value }}) => {
     const fieldValue = value
 
@@ -37,8 +27,17 @@ const EditLocation = () => {
   }
 
   useEffect(() => {
+    const getLocation = async () => {
+      try {
+        const locationResponse = await dispatch(loadLocation(id))
+        const location = locationResponse.data()
+        setForm(() => { return {...location, id: locationResponse.id} })
+      } catch (error) {
+        console.error('There was an error while getting the location', error)
+      }
+    }
     getLocation()
-  }, []);
+  }, [dispatch, id]);
 
   return (
     <>

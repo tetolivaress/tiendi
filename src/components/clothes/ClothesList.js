@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useFirestore } from 'react-redux-firebase'
 import { useDispatch } from 'react-redux'
 import ClothingDetail from './ClothingDetail'
 import Loading from '@components/Loading'
@@ -11,17 +10,17 @@ const ClothesList = ({ category }) => {
 
   const dispatch = useDispatch()
 
-  const getClothes = async category => {
-    const clothesResponse = await dispatch(loadClothes(category.id))
-    clothesResponse.docs.forEach(async doc => {
-      const clothing = doc.data()
-      setClothes(oldClothes => [...oldClothes, clothing])
-    })
-  }
-
   useEffect(() => {
+    const getClothes = async category => {
+      const clothesResponse = await dispatch(loadClothes(category.id))
+      clothesResponse.docs.forEach(async doc => {
+        const clothing = doc.data()
+        setClothes(oldClothes => [...oldClothes, clothing])
+      })
+    }
+
     getClothes(category)
-  },[category])
+  },[category, dispatch])
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 relative " style={{minHeight: '200px'}}>

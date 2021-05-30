@@ -1,16 +1,13 @@
 import { useState } from 'react'
-import { useFirestore } from 'react-redux-firebase'
 import { useHistory } from 'react-router'
 import LocationForm from './LocationForm'
 import { addLocation } from '@actions/locations'
-import { showLoading, hideLoading } from '@actions/loading'
 import { useDispatch } from 'react-redux'
 
 // import { addLocation } from '@actions'
 
 const AddLocation = () => {
 
-  const firestore = useFirestore()
   const history = useHistory()
   const dispatch = useDispatch()
 

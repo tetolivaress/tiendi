@@ -1,4 +1,4 @@
-import { PencilIcon, XIcon, LocationMarkerIcon } from '@heroicons/react/solid'
+import { PencilIcon, XIcon } from '@heroicons/react/solid'
 import { Link } from 'react-router-dom'
 
 const LocationDetail = ({ location }) => {
