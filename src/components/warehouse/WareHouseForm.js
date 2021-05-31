@@ -1,13 +1,7 @@
-import { useState } from "react"
-import { useSelector, useDispatch } from "react-redux"
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import ClothingColorPicker from '@components/clothes/children/ClothingColorPicker'
 import ClothingSizeInput from '@components/clothes/children/ClothingSizeInput'
-
-import readFileAsync from '../../utils/FileReader'
-import resizeImage from '../../utils/ImageReader'
-import { addClothes } from '@actions/clothes'
 
 const WareHouseForm = ({
   form,
@@ -19,7 +13,6 @@ const WareHouseForm = ({
   handleChangeSize,
   handleDetailChange
 }) => {
-  const dispatch = useDispatch()
 
   return (
     <div className="w-screen grid grid-cols-1 md:grid-cols-2">

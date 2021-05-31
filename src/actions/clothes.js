@@ -27,8 +27,8 @@ const getAllClothes = () => {
     const clothesResponse = await getFirebase()
       .firestore()
       .collection(collectionName)
+      .limit(5)
       .get()
-
     dispatch({ type: 'LOAD_CLOTHES', payload: clothesResponse.docs })
     dispatch(hideLoading())
     return clothesResponse
