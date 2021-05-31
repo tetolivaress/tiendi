@@ -50,4 +50,4 @@ const CategoryForm = ({ form, onChange, onSubmit }) => {
   );
 };
 
-export default CategoryForm;
+export default CategoryForm

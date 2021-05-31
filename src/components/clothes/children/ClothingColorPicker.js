@@ -21,14 +21,14 @@ const ClothingColorPicker = ({ handleChangeColor }) => {
           />
           <div>
             {
-              colors.map(color => <span className="h-4 w-4" style={{backgroundColor:color}}></span>)
+              colors.map((color, index) => <span className="h-4 w-4" style={{backgroundColor:color}} key={color+index}></span>)
             }
           </div>
         </div>
         <div className="grid grid-cols-6 md:grid-cols-12 gap-2">
           {
-            colors.map(color => (
-              <div className="h-6 w-6 p-6 relative rounded-lg" style={{backgroundColor:color}}>
+            colors.map((color, index) => (
+              <div className="h-6 w-6 p-6 relative rounded-lg" style={{backgroundColor:color}} key={color+index}>
                 <XIcon
                   className="absolute top-0 right-0 w-6 h-6 text-white bg-opacity-50 bg-black cursor-pointer rounded-bl-lg rounded-tr-lg"
                   onClick={() => {
