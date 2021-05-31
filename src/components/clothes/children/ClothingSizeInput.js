@@ -35,8 +35,8 @@ const ClothingSizeInput = ({ handleChangeSize }) => {
       </div>
       <div className="grid grid-cols-3 md:grid-cols-6 gap-4">
         {
-          sizes.list.map(size => (
-            <div className="bg-gray-200 p-4 relative">
+          sizes.list.map((size, i) => (
+            <div className="bg-gray-200 p-4 relative" key={i}>
               <span className="overflow-ellipsis">{size}</span>
               <XIcon
                 className="absolute top-0 right-0 w-6 h-6 text-white bg-opacity-50 bg-black cursor-pointer rounded-bl-lg rounded-tr-lg"

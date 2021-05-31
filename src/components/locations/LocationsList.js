@@ -9,22 +9,21 @@ const LocationsList = () => {
   const [locations, setLocations] = useState([])
   const dispatch = useDispatch()
 
-  const getLocations = async () => {
-    setLocations([])
-    try {
-      const locationsResponse = await dispatch(loadLocations())
-      locationsResponse.docs.forEach(async doc => {
-        const location = doc.data()
-        setLocations(oldLocations => [...oldLocations, {...location, id: doc.id}])
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
   useEffect(() => {
+    const getLocations = async () => {
+      setLocations([])
+      try {
+        const locationsResponse = await dispatch(loadLocations())
+        locationsResponse.docs.forEach(async doc => {
+          const location = doc.data()
+          setLocations(oldLocations => [...oldLocations, {...location, id: doc.id}])
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
     getLocations()
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="md:mx-60">

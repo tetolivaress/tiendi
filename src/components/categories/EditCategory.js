@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useDispatch } from "react-redux"
 import CategoryForm from "./CategoryForm"
-import { getCategory as loadCategory, updateCategory } from "@actions/categories"
+import { getCategory, updateCategory } from "@actions/categories"
 import { useHistory, useParams } from "react-router"
 import readFileAsync from "@utils/FileReader"
 import resizeImage from "@utils/ImageReader"
@@ -17,15 +17,13 @@ const EditCategory = () => {
     order: 0,
   })
 
-  const getCategory = async () => {
-    const categoryResponse = await dispatch(loadCategory(id))
-    const category = categoryResponse.data()
-    setForm(() => { return { ...category, id: categoryResponse.id } })
-  }
-
   useEffect(() => {
-    getCategory()
-  }, [])
+    const loadCategory = async () => {
+      const categoryResponse = await dispatch(getCategory(id))
+      setForm(() => { return { ...categoryResponse.data(), id: categoryResponse.id } })
+    }
+    loadCategory()
+  }, [dispatch, id])
 
   const handleChange = async ({ target: { name, value, type, files } }) => {
     const fieldValue = type === "file" ? await handleImage(files[0]) : value
