@@ -13,8 +13,8 @@ const WareHouseClothingDetail = ({ clothing: { id, image, title, price, availabl
             {available ? 'Disponible' : 'No Disponible'}
           </p>
           <div className="flex justify-around">
-            <Link to={`/backoffice/clothes/edit/${id}`}>Editar</Link>
-            <Link to={`/backoffice/clothes/delete/${id}`}>Eliminar</Link>
+            <Link to={`/warehouse/edit/${id}`}>Editar</Link>
+            <Link to={`/warehouse/delete/${id}`}>Eliminar</Link>
           </div>
         </div>
       </div>

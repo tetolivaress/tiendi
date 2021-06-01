@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import { ChromePicker  } from 'react-color'
 import { XIcon } from "@heroicons/react/outline"
 
-const ClothingColorPicker = ({ handleChangeColor }) => {
-  const [colors, setColors] = useState([])
+const ClothingColorPicker = ({ handleChangeColor, handleDeleteColor, colors }) => {
+  // const [colors, setColors] = useState([])
 
-  useEffect(() => {
-    handleChangeColor(colors)
-  }, [colors])
+  // useEffect(() => {
+  //   handleChangeColor(colors)
+  // }, [colors])
 
   return (
     <>
@@ -17,7 +17,8 @@ const ClothingColorPicker = ({ handleChangeColor }) => {
             className="form-control"
             placeholder="colors"
             color={colors}
-            onChangeComplete={({ hex }) => setColors([...colors, hex])}
+            // onChangeComplete={({ hex }) => setColors([...colors, hex])}
+            onChangeComplete={({ hex }) => handleChangeColor(hex)}
           />
           <div>
             {
@@ -31,9 +32,9 @@ const ClothingColorPicker = ({ handleChangeColor }) => {
               <div className="h-6 w-6 p-6 relative rounded-lg" style={{backgroundColor:color}} key={color+index}>
                 <XIcon
                   className="absolute top-0 right-0 w-6 h-6 text-white bg-opacity-50 bg-black cursor-pointer rounded-bl-lg rounded-tr-lg"
-                  onClick={() => {
-                    setColors([...colors.filter(c=>c!==color)])
-                  }}
+                  onClick={() =>
+                    handleDeleteColor(color)
+                  }
                 />
               </div>
             ))

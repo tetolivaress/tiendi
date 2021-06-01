@@ -67,7 +67,16 @@ const updateClothes = (payload) => {
       .collection(collectionName)
       .doc(payload.id)
       .update({
-        name: payload.name
+        title: payload.title,
+        price: payload.price,
+        image: payload.image,
+        categoryId: payload.categoryId,
+        description: payload.description,
+        details: payload.details,
+        available: payload.available,
+        discount: payload.discount,
+        colors: payload.colors,
+        sizes: payload.sizes
       })
     dispatch(hideLoading())
   }

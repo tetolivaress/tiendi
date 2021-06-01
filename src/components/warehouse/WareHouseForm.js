@@ -24,6 +24,7 @@ const WareHouseForm = ({
           className="form-control"
           name="title"
           placeholder="title"
+          value={form.title}
           onChange={onChange}
         />
         <input
@@ -32,6 +33,7 @@ const WareHouseForm = ({
           type="number"
           placeholder="price"
           onChange={onChange}
+          value={form.price}
         />
         <input
           className="form-control"
@@ -39,6 +41,7 @@ const WareHouseForm = ({
           type="number"
           placeholder="discount"
           onChange={onChange}
+          value={form.discount}
         />
         <label htmlFor="image" className="bg-red-500 m-5 p-5 hover:transform hover:scale-105 transition-all duration-150S">
           selecciona una imagen
@@ -58,7 +61,9 @@ const WareHouseForm = ({
           onChange={onChange}
         >
           {
-            categories && categories.map(({ id, name }) => <option key={id} value={id}>{name}</option>)
+            categories && categories.map(({ id, name }) =>
+              <option key={id} value={id}>{name}</option>
+            )
           }
         </select>
         <textarea
@@ -67,6 +72,7 @@ const WareHouseForm = ({
           rows={3}
           placeholder="description"
           onChange={onChange}
+          value={form.description}
         />
 
         <CKEditor
@@ -75,8 +81,8 @@ const WareHouseForm = ({
           // onChange={ ( event, editor ) => setForm({...form, details: editor.getData()}) }
           onChange={(event, editor) => { handleDetailChange(event, editor) }}
         />
-        <ClothingColorPicker  handleChangeColor={handleChangeColor} />
-        <ClothingSizeInput handleChangeSize={handleChangeSize} />
+        <ClothingColorPicker  handleChangeColor={handleChangeColor} colors={form.colors} />
+        <ClothingSizeInput handleChangeSize={handleChangeSize} sizes={form.sizes}/>
 
         <div>
           <label htmlFor="available">

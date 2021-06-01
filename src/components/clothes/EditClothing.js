@@ -6,7 +6,7 @@ import resizeImage from '@utils/ImageReader'
 import { getClothing } from '@actions/clothes'
 import { useParams } from 'react-router'
 
-const AddClothing = () => {
+const EditClothing = () => {
   const dispatch = useDispatch()
   const { id } = useParams()
   const [form, setForm] = useState({
@@ -30,7 +30,8 @@ const AddClothing = () => {
       try {
         const clothingResponse = await dispatch(getClothing(id))
         const clothing = clothingResponse.data()
-        setForm(() => { return {...clothing, id: clothingResponse.id} })
+        console.log(clothing)
+        setForm(() => { return {...clothing}})
       } catch (error) {
         console.log(error)
       }
@@ -60,8 +61,12 @@ const AddClothing = () => {
     }
   }
 
-  const handleChangeColor = (colors) => {
-    setForm({...form, colors: colors})
+  const handleChangeColor = (color) => {
+    setForm({...form, colors: [...form.colors, color]})
+  }
+
+  const handleDeleteColor = (color) => {
+    setForm({...form, colors: [...form.colors.filter(c=>c!==color)]})
   }
 
   const handleChangeSize = (sizes) => {
@@ -81,6 +86,7 @@ const AddClothing = () => {
       onChange={handleChange}
       onSubmit={handleSubmit}
       handleChangeColor={handleChangeColor}
+      handleDeleteColor={handleDeleteColor}
       handleImage={handleImage}
       handleChangeSize={handleChangeSize}
       handleDetailChange={handleDetailChange}
@@ -88,4 +94,4 @@ const AddClothing = () => {
   )
 }
 
-export default AddClothing
+export default EditClothing
