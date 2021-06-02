@@ -10,12 +10,12 @@ const getClothes = (categoryId) => {
       .collection(collectionName)
       .where('categoryId', '==', categoryId)
       .get()
-    dispatch({ type: 'LOAD_CLOTHES', payload: 
-      {
-        categoryId: categoryId,
-        docs: clothesResponse.docs
-      }
-    })
+    // dispatch({ type: 'LOAD_CLOTHES', payload: 
+    //   {
+    //     categoryId: categoryId,
+    //     docs: clothesResponse.docs
+    //   }
+    // })
     dispatch(hideLoading())
     return clothesResponse
   }

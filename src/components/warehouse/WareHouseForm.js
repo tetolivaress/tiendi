@@ -10,6 +10,7 @@ const WareHouseForm = ({
   onSubmit,
   handleImage,
   handleChangeColor,
+  handleDeleteColor,
   handleChangeSize,
   handleDetailChange
 }) => {
@@ -54,6 +55,7 @@ const WareHouseForm = ({
           onChange={(event) => handleImage(event)}
           type="file"
         />
+        <div><img className="w-20 m-auto object-cover" src={form.image}/></div>
         <select
           className="form-control"
           name="categoryId"
@@ -81,8 +83,15 @@ const WareHouseForm = ({
           // onChange={ ( event, editor ) => setForm({...form, details: editor.getData()}) }
           onChange={(event, editor) => { handleDetailChange(event, editor) }}
         />
-        <ClothingColorPicker  handleChangeColor={handleChangeColor} colors={form.colors} />
-        <ClothingSizeInput handleChangeSize={handleChangeSize} sizes={form.sizes}/>
+        <ClothingColorPicker
+          handleChangeColor={handleChangeColor}
+          handleDeleteColor={handleDeleteColor}
+          colors={form.colors}
+        />
+        <ClothingSizeInput
+          handleChangeSize={handleChangeSize}
+          sizes={form.sizes}
+        />
 
         <div>
           <label htmlFor="available">
