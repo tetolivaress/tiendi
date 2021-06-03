@@ -38,7 +38,7 @@ const EditClothing = () => {
     }
 
     loadClothing()
-  }, [])
+  }, [dispatch, id])
 
   const handleChange = ({target: { name, value, type, checked }, editor}) =>
     type === 'checkbox'
@@ -79,7 +79,11 @@ const EditClothing = () => {
 
   const handleSubmit = async e => {
     e.preventDefault()
-    await dispatch(updateClothing(form))
+    try {
+      await dispatch(updateClothing(form))
+    } catch (error) {
+      console.error('There was an error while storing your clothing: ', error)
+    }
     // await firestore.collection('clothes').add(form)
   }
 

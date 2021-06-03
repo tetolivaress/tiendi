@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react"
 import { PlusIcon, XIcon } from "@heroicons/react/outline"
 
 
@@ -9,18 +8,6 @@ const ClothingSizeInput = ({
   sizes,
   sizeField
 }) => {
-  // const [sizes, setSizes] = useState({
-  //   newSize: '',
-  //   list: []
-  // })
-
-  // const handleChange = ({target: { name, value }}) =>
-  //   setSizes({...sizes, [name]: value})
-
-  // useEffect(() => {
-  //   handleChangeSize(sizes)
-  // }, [sizes])
-
   return (
     <div>
       <div className="flex">

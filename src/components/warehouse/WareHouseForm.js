@@ -56,7 +56,7 @@ const WareHouseForm = ({
           onChange={(event) => handleImage(event)}
           type="file"
         />
-        <div><img className="w-20 m-auto object-cover" src={form.image}/></div>
+        <div><img className="w-20 m-auto object-cover" src={form.image} title={form.title}/></div>
         <select
           className="form-control"
           name="categoryId"

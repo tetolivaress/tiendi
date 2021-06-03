@@ -60,9 +60,8 @@ const addClothes = (payload) => {
 }
 
 const updateClothing = (payload) => {
-  console.log(payload)
   return async (dispatch, getState, getFirebase) => {
-    dispatch(hideLoading())
+    dispatch(showLoading())
     await getFirebase()
       .firestore()
       .collection(collectionName)
@@ -83,7 +82,7 @@ const updateClothing = (payload) => {
   }
 }
 
-const deleteClothes = (id) => {
+const deleteClothing = (id) => {
   return async (dispatch, getState, getFirebase) => {
     dispatch(hideLoading())
     await getFirebase()
@@ -97,7 +96,7 @@ const deleteClothes = (id) => {
 
 export {
   addClothes,
-  deleteClothes,
+  deleteClothing,
   getClothes,
   getAllClothes,
   getClothing,

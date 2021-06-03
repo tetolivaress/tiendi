@@ -1,14 +1,7 @@
-import { useEffect, useState } from "react"
 import { ChromePicker  } from 'react-color'
 import { XIcon } from "@heroicons/react/outline"
 
 const ClothingColorPicker = ({ handleChangeColor, handleDeleteColor, colors }) => {
-  // const [colors, setColors] = useState([])
-
-  // useEffect(() => {
-  //   handleChangeColor(colors)
-  // }, [colors])
-
   return (
     <>
       <div>

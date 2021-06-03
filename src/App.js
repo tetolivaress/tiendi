@@ -6,6 +6,7 @@ import Home from '@pages'
 import WareHouse from '@pages/warehouse'
 import AddClothing from '@pages/warehouse/AddClothing'
 import EditClothing from '@pages/warehouse/EditClothing'
+import DeleteClothing from '@components/clothes/DeleteClothing'
 import FirebaseAuth from './components/Firebase/Auth'
 import Categories from '@pages/categories'
 import AddCategory from '@pages/categories/Add'
@@ -40,6 +41,7 @@ const App = () => {
             <Route exact path="/warehouse" component={WareHouse}/>
             <Route exact path="/warehouse/add" component={AddClothing}/>
             <Route exact path="/warehouse/edit/:id" component={EditClothing}/>
+            <Route exact path="/warehouse/delete/:id" component={DeleteClothing}/>
             <Route exact path="/backoffice/categories" component={Categories}/>
             <Route exact path="/backoffice/locations" component={Locations}/>
             <Route exact path="/backoffice/locations/add" component={AddLocation}/>
