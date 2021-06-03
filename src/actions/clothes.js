@@ -27,7 +27,7 @@ const getAllClothes = () => {
     const clothesResponse = await getFirebase()
       .firestore()
       .collection(collectionName)
-      .limit(5)
+      // .limit(5)
       .get()
     dispatch({ type: 'LOAD_CLOTHES', payload: clothesResponse.docs })
     dispatch(hideLoading())
@@ -59,7 +59,8 @@ const addClothes = (payload) => {
   }
 }
 
-const updateClothes = (payload) => {
+const updateClothing = (payload) => {
+  console.log(payload)
   return async (dispatch, getState, getFirebase) => {
     dispatch(hideLoading())
     await getFirebase()
@@ -100,5 +101,5 @@ export {
   getClothes,
   getAllClothes,
   getClothing,
-  updateClothes
+  updateClothing
 }

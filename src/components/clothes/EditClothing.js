@@ -3,7 +3,7 @@ import WareHouseForm from '@components/warehouse/WareHouseForm'
 import { useDispatch, useSelector } from 'react-redux'
 import readFileAsync from '@utils/FileReader'
 import resizeImage from '@utils/ImageReader'
-import { getClothing } from '@actions/clothes'
+import { getClothing, updateClothing } from '@actions/clothes'
 import { useParams } from 'react-router'
 
 const EditClothing = () => {
@@ -31,7 +31,7 @@ const EditClothing = () => {
         const clothingResponse = await dispatch(getClothing(id))
         const clothing = clothingResponse.data()
         console.log(clothing)
-        setForm(() => { return {...clothing}})
+        setForm({...clothing, id: clothingResponse.id})
       } catch (error) {
         console.log(error)
       }
@@ -69,13 +69,17 @@ const EditClothing = () => {
     setForm({...form, colors: [...form.colors.filter(c=>c!==color)]})
   }
 
-  const handleChangeSize = (sizes) => {
-    setForm({...form, sizes})
+  const handleChangeSize = (size) => {
+    setForm({...form, sizes: [...form.sizes, size]})
+  }
+
+  const handleDeleteSize = (size) => {
+    setForm({...form, sizes: [...form.sizes.filter(s=>s!==size)]})
   }
 
   const handleSubmit = async e => {
     e.preventDefault()
-    // await dispatch(updateClothes(form))
+    await dispatch(updateClothing(form))
     // await firestore.collection('clothes').add(form)
   }
 
@@ -89,6 +93,7 @@ const EditClothing = () => {
       handleDeleteColor={handleDeleteColor}
       handleImage={handleImage}
       handleChangeSize={handleChangeSize}
+      handleDeleteSize={handleDeleteSize}
       handleDetailChange={handleDetailChange}
     />
   )

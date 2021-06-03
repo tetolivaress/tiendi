@@ -12,6 +12,7 @@ const WareHouseForm = ({
   handleChangeColor,
   handleDeleteColor,
   handleChangeSize,
+  handleDeleteSize,
   handleDetailChange
 }) => {
 
@@ -89,8 +90,11 @@ const WareHouseForm = ({
           colors={form.colors}
         />
         <ClothingSizeInput
+          onChange={onChange}
           handleChangeSize={handleChangeSize}
+          handleDeleteSize={handleDeleteSize}
           sizes={form.sizes}
+          sizeField={form.sizeField}
         />
 
         <div>
