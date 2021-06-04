@@ -1,4 +1,5 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react'
+import { XIcon } from '@heroicons/react/solid'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import ClothingColorPicker from '@components/clothes/children/ClothingColorPicker'
 import ClothingSizeInput from '@components/clothes/children/ClothingSizeInput'
@@ -13,7 +14,8 @@ const WareHouseForm = ({
   handleDeleteColor,
   handleChangeSize,
   handleDeleteSize,
-  handleDetailChange
+  handleDetailChange,
+  handleDeleteImage
 }) => {
 
   return (
@@ -55,8 +57,26 @@ const WareHouseForm = ({
           placeholder="image"
           onChange={(event) => handleImage(event)}
           type="file"
+          multiple
         />
-        <div><img className="w-20 m-auto object-cover" src={form.image} title={form.title}/></div>
+        <div className="grid grid-cols-4 gap-4">
+        { form.images && form.images.map((image, i) => (
+          <div className="relative">
+            <img
+              className="object-cover"
+              src={image}
+              alt={form.title}
+            />
+            <div
+              className="absolute top-0 right-0 w-5 bg-red-500 text-white"
+              onClick={() => handleDeleteImage(image)}
+            >
+              <XIcon />
+            </div>
+          </div>
+        ))
+        }
+        </div>
         <select
           className="form-control"
           name="categoryId"

@@ -12,7 +12,7 @@ const EditClothing = () => {
   const [form, setForm] = useState({
     title: '',
     price: '',
-    image: '',
+    images: [],
     categoryId: '',
     description: '',
     details: '',
@@ -51,14 +51,22 @@ const EditClothing = () => {
 
   const handleImage = async (e) => {
     try{
+      let readyImages = []
       console.log(e)
-      const file = await readFileAsync(e.target.files[0])
-      const image = await resizeImage(file)
-      setForm({...form, image})
+      for (let index = 0; index < e.target.files.length; index++) {
+        let file = await readFileAsync(e.target.files[index])
+        let image = await resizeImage(file)
+        readyImages.push(image)
+      }
+      setForm({...form, images: [...readyImages]})
       console.log('Image Ready')
     }catch (error) {
-      alert('Los archivos solo pueden ser tipo JPEG, JPG ó PNG', error)
+      console.log('Los archivos solo pueden ser tipo JPEG, JPG ó PNG', error)
     }
+  }
+
+  const handleDeleteImage = (imageToDelete) => {
+    setForm({...form, images: [...form.images.filter(image=>image!==imageToDelete)]})
   }
 
   const handleChangeColor = (color) => {
@@ -99,6 +107,7 @@ const EditClothing = () => {
       handleChangeSize={handleChangeSize}
       handleDeleteSize={handleDeleteSize}
       handleDetailChange={handleDetailChange}
+      handleDeleteImage={handleDeleteImage}
     />
   )
 }
