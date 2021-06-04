@@ -48,12 +48,24 @@ const AddClothing = () => {
     }
   }
 
-  const handleChangeColor = (colors) => {
-    setForm({...form, colors: colors})
+  const handleDeleteImage = (imageToDelete) => {
+    setForm({...form, images: [...form.images.filter(image=>image!==imageToDelete)]})
   }
 
-  const handleChangeSize = (sizes) => {
-    setForm({...form, sizes})
+  const handleChangeColor = (color) => {
+    setForm({...form, colors: [...form.colors, color]})
+  }
+
+  const handleDeleteColor = (color) => {
+    setForm({...form, colors: [...form.colors.filter(c=>c!==color)]})
+  }
+
+  const handleChangeSize = (size) => {
+    setForm({...form, sizes: [...form.sizes, size]})
+  }
+
+  const handleDeleteSize = (size) => {
+    setForm({...form, sizes: [...form.sizes.filter(s=>s!==size)]})
   }
 
   const handleSubmit = async e => {
@@ -69,9 +81,12 @@ const AddClothing = () => {
       onChange={handleChange}
       onSubmit={handleSubmit}
       handleChangeColor={handleChangeColor}
+      handleDeleteColor={handleDeleteColor}
       handleImage={handleImage}
       handleChangeSize={handleChangeSize}
+      handleDeleteSize={handleDeleteSize}
       handleDetailChange={handleDetailChange}
+      handleDeleteImage={handleDeleteImage}
     />
   )
 }

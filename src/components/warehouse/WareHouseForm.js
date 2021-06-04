@@ -1,8 +1,8 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react'
-import { XIcon } from '@heroicons/react/solid'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import ClothingColorPicker from '@components/clothes/children/ClothingColorPicker'
 import ClothingSizeInput from '@components/clothes/children/ClothingSizeInput'
+import ClothingImagesPicker from '@components/clothes/children/ClothingImagesPicker'
 
 const WareHouseForm = ({
   form,
@@ -50,33 +50,12 @@ const WareHouseForm = ({
         <label htmlFor="image" className="bg-red-500 m-5 p-5 hover:transform hover:scale-105 transition-all duration-150S">
           selecciona una imagen
         </label>
-        <input
-          id="image"
-          className="hidden form-control"
-          name="image"
-          placeholder="image"
-          onChange={(event) => handleImage(event)}
-          type="file"
-          multiple
+        <ClothingImagesPicker
+          images={form.images}
+          title={form.title}
+          handleImage={handleImage}
+          handleDeleteImage={handleDeleteImage}
         />
-        <div className="grid grid-cols-4 gap-4">
-        { form.images && form.images.map((image, i) => (
-          <div className="relative">
-            <img
-              className="object-cover"
-              src={image}
-              alt={form.title}
-            />
-            <div
-              className="absolute top-0 right-0 w-5 bg-red-500 text-white"
-              onClick={() => handleDeleteImage(image)}
-            >
-              <XIcon />
-            </div>
-          </div>
-        ))
-        }
-        </div>
         <select
           className="form-control"
           name="categoryId"
