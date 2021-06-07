@@ -1,6 +1,6 @@
 import { showLoading, hideLoading } from '@actions/loading'
 
-const collectionName = 'delivery-types'
+const collectionName = 'deliveries'
 
 const getDeliveryTypes = () => {
   console.log('Loading delivery types')
