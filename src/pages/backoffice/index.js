@@ -8,6 +8,9 @@ const Backoffice = () => (
     <Link to="categories" className="shadow m-8 p-4">
       Lugares de entrega
     </Link>
+    <Link to="categories" className="shadow m-8 p-4">
+      Tipos de delivery
+    </Link>
   </>
 )
 
