@@ -12,6 +12,9 @@ const Backoffice = () => (
       <Link to="/backoffice/delivery-types" className="shadow p-4 text-center text-blue-500">
         Tipos de entrega
       </Link>
+      <Link to="/backoffice/days" className="shadow p-4 text-center text-blue-500">
+        Días
+      </Link>
       <Link to="/warehouse" className="shadow p-4 text-center text-blue-500">
         Almacén
       </Link>

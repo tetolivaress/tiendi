@@ -58,7 +58,7 @@ const EditClothing = () => {
         let image = await resizeImage(file)
         readyImages.push(image)
       }
-      setForm({...form, images: [...readyImages]})
+      setForm({...form, images: [...form.images, ...readyImages]})
       console.log('Image Ready')
     }catch (error) {
       console.log('Los archivos solo pueden ser tipo JPEG, JPG ó PNG', error)

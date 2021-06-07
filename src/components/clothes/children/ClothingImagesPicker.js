@@ -17,7 +17,7 @@ const ClothingImagesPicker = ({
         type="file"
         multiple
       />
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 md:grid-cols-4 items-center gap-4">
       { images && images.map((image, i) => (
         <div className="relative" key={i}>
           <img
