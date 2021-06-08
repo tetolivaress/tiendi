@@ -15,8 +15,8 @@ const DaysList = () => {
       try {
         const daysResponse = await dispatch(loadDays())
         daysResponse.docs.forEach(async doc => {
-          const location = doc.data()
-          setDays(oldDays => [...oldDays, {...location, id: doc.id}])
+          const day = doc.data()
+          setDays(oldDays => [...oldDays, {...day, id: doc.id}])
         })
       } catch (error) {
         console.log(error)
@@ -27,12 +27,12 @@ const DaysList = () => {
 
   return (
     <div className="md:mx-60">
-      <h1 className="text-center">Tus Lugares</h1>
+      <h1 className="text-center">Tus Días de entrega</h1>
       {
-        days.length > 0 && days.map((location, i) =>
+        days.length > 0 && days.map((day, i) =>
           <DayDetail
-            location={location}
-            key={location.id}
+            day={day}
+            key={day.id}
           />
         )
       }

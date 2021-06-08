@@ -9,7 +9,11 @@ import firebase from 'firebase'
 import App from './App'
 import './App.css'
 
-firebase.apps.length || firebase.initializeApp(fbConfig )
+try {
+  firebase.apps.length || firebase.initializeApp(fbConfig )
+} catch (error) {
+  console.log('Error on loading firebase app ', error);
+}
 
 
 render(

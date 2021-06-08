@@ -28,9 +28,13 @@ import GlobalLoading from './components/GlobalLoading'
 import { useSelector } from 'react-redux'
 
 const App = () => {
-  useFirestoreConnect([
-    { collection: 'tiendicategories' }
-  ])
+  try {
+    useFirestoreConnect([
+      { collection: 'tiendicategories' }
+    ])
+  } catch (error) {
+    console.log(error)
+  }
 
   const categories = useSelector(({ firestore }) => firestore.ordered.tiendicategories)
   const isLoading = useSelector((state) => state.loading)
@@ -61,7 +65,7 @@ const App = () => {
             <Route exact path="/backoffice/delivery-types/edit/:id" component={EditDeliveryType}/>
             <Route exact path="/backoffice/delivery-types/delete/:id" component={DeleteDeliveryType}/>
             <Route exact path="/backoffice" component={Backoffice}/>
-            <Route exact path="*" component={NotFound}/>
+            <Route exact component={NotFound}/>
           </Switch>
         </Layout>
       </BrowserRouter>
