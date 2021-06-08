@@ -14,6 +14,8 @@ import EditCategory from '@pages/categories/Edit'
 import DeleteCategory from '@components/categories/DeleteCategory'
 import DeliveryTypes from '@pages/backoffice/DeliveryTypes'
 import Days from '@pages/backoffice/Days'
+import AddDay from '@pages/backoffice/Days/Add'
+import EditDay from '@pages/backoffice/Days/Edit'
 import EditDeliveryType from '@pages/backoffice/DeliveryTypes/Edit'
 import DeleteDeliveryType from '@components/DeliveryTypes/DeleteDeliveryType'
 import AddDeliveryType from '@pages/backoffice/DeliveryTypes/Add'
@@ -60,6 +62,8 @@ const App = () => {
             <Route exact path="/backoffice/categories/edit/:id" component={EditCategory}/>
             <Route exact path="/backoffice/categories/delete/:id" component={DeleteCategory}/>
             <Route exact path="/backoffice/days" component={Days}/>
+            <Route exact path="/backoffice/days/add" component={AddDay}/>
+            <Route exact path="/backoffice/days/edit/:id" component={EditDay}/>
             <Route exact path="/backoffice/delivery-types" component={DeliveryTypes}/>
             <Route exact path="/backoffice/delivery-types/add" component={AddDeliveryType}/>
             <Route exact path="/backoffice/delivery-types/edit/:id" component={EditDeliveryType}/>
