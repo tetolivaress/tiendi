@@ -35,7 +35,7 @@ const AddCategory = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(addCategory(form));
-    // history.push("/backoffice/categories");
+    history.push("/backoffice/categories");
   };
 
   return (
