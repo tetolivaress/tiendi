@@ -1,5 +1,7 @@
 import { showLoading, hideLoading } from '@actions/loading'
 import { getClothes } from '@actions/clothes'
+import { getFirebase } from 'react-redux-firebase'
+import slugify from '@utils/Slugify'
 
 const collectionName = 'tiendicategories'
 
@@ -31,10 +33,16 @@ const getCategory = (id) => {
 const addCategory = (payload) => {
   return async (dispatch, getState, getFirebase) => {
     dispatch(showLoading())
-    await getFirebase()
-      .firestore()
-      .collection(collectionName)
-      .add({...payload})
+    const storageRef = await getFirebase().storage()
+      .ref(`tiendiImages/categories/${slugify(payload.name)}`)
+    const task = await storageRef.putString(payload.image, 'data_url')
+    const imageUrl = await task.task.snapshot.ref.getDownloadURL()
+    await getFirebase().firestore().collection('tiendicategories').add({
+      name: payload.name,
+      image: imageUrl || '',
+      order: payload.order
+    })
+
     dispatch(hideLoading())
   }
 }
@@ -42,6 +50,10 @@ const addCategory = (payload) => {
 const updateCategory = (payload) => {
   return async (dispatch, getState, getFirebase) => {
     dispatch(showLoading())
+    const storageRef = await getFirebase().storage()
+      .ref(`tiendiImages/categories/${slugify(payload.name)}`)
+    const task = await storageRef.putString(payload.image, 'data_url')
+    const imageUrl = await task.task.snapshot.ref.getDownloadURL()
     await getFirebase()
       .firestore()
       .collection(collectionName)
@@ -49,7 +61,7 @@ const updateCategory = (payload) => {
       .update({
         name: payload.name,
         order: payload.order,
-        image: payload.image
+        image: imageUrl
       })
     dispatch(hideLoading())
   }
