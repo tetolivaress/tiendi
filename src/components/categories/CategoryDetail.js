@@ -4,6 +4,7 @@ const CategoryDetail = ({ category }) => (
     <div className="col-span-2">
       <h2>{category.name}</h2>
       <h2>jajaja</h2>
+      <h2>rrrrrr</h2>
     </div>
   </section>
 )
