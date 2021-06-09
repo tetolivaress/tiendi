@@ -5,6 +5,7 @@ const CategoryDetail = ({ category }) => (
       <h2>{category.name}</h2>
       <h2>jajaja</h2>
       <h2>rrrrrr</h2>
+      <h2>mmmmmm</h2>
     </div>
   </section>
 )
