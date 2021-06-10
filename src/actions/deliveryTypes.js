@@ -10,6 +10,7 @@ const getDeliveryTypes = () => {
       .firestore()
       .collection(collectionName)
       .get()
+      dispatch({ type: 'LOAD_DELIVERY_TYPES', payload: deliveryTypesResponse.docs })
     dispatch(hideLoading())
     return deliveryTypesResponse
   }

@@ -6,6 +6,7 @@ import loading from './loading'
 import clothes from './clothes'
 import locations from './locations'
 import days from './days'
+import deliveryTypes from './deliveryTypes'
 
 export default combineReducers ({
   firebase: firebaseReducer,
@@ -13,5 +14,6 @@ export default combineReducers ({
   loading,
   clothes,
   locations,
-  days
+  days,
+  deliveryTypes
 })

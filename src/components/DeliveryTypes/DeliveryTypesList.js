@@ -1,29 +1,22 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import DeliveryTypeDetail from './DeliveryTypeDetail'
 import AddDeliveryTypeBtn from './AddDeliveryTypeBtn'
-import { getDeliveryTypes as loadDeliveryTypes } from '@actions/deliveryTypes'
+import { getDeliveryTypes } from '@actions/deliveryTypes'
 
 const DeliveryTypesList = () => {
-  const [deliveryTypes, setDeliveryTypes] = useState([])
   const dispatch = useDispatch()
+  const deliveryTypes = useSelector(({ deliveryTypes }) => deliveryTypes.deliveryTypes)
+
+  const loadDeliveryTypes = async () => {
+    await dispatch(getDeliveryTypes())
+  }
 
   useEffect(() => {
-    const getDeliveryTypes = async () => {
-      setDeliveryTypes([])
-      try {
-        const DeliveryTypesResponse = await dispatch(loadDeliveryTypes())
-        DeliveryTypesResponse.docs.forEach(async doc => {
-          const deliveryType = doc.data()
-          setDeliveryTypes(oldDeliveryTypes => [...oldDeliveryTypes, {...deliveryType, id: doc.id}])
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getDeliveryTypes()
-  }, [dispatch]);
+    
+    loadDeliveryTypes()
+  }, [])
 
   return (
     <div className="md:mx-60">
