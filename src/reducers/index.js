@@ -5,11 +5,13 @@ import { combineReducers } from 'redux'
 import loading from './loading'
 import clothes from './clothes'
 import locations from './locations'
+import days from './days'
 
 export default combineReducers ({
   firebase: firebaseReducer,
   firestore: firestoreReducer,
   loading,
   clothes,
-  locations
+  locations,
+  days
 })

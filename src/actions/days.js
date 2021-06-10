@@ -9,6 +9,7 @@ const getDays = () => {
       .firestore()
       .collection(collectionName)
       .get()
+    dispatch({ type: 'LOAD_DAYS', payload: daysResponse.docs })
     dispatch(hideLoading())
     return daysResponse
   }

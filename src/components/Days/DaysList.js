@@ -1,29 +1,22 @@
-import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import DayDetail from './DayDetail'
 import AddDayBtn from './AddDayBtn'
-import { getDays as loadDays } from '@actions/days'
+import { getDays } from '@actions/days'
 
 const DaysList = () => {
-  const [days, setDays] = useState([])
   const dispatch = useDispatch()
+  const days = useSelector(({ days }) => days.days)
+
+  const loadDays = async () => {
+    await dispatch(getDays())
+  }
 
   useEffect(() => {
-    const getDays = async () => {
-      setDays([])
-      try {
-        const daysResponse = await dispatch(loadDays())
-        daysResponse.docs.forEach(async doc => {
-          const day = doc.data()
-          setDays(oldDays => [...oldDays, {...day, id: doc.id}])
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getDays()
-  }, [dispatch]);
+    
+    loadDays()
+  }, [])
 
   return (
     <div className="md:mx-60">
