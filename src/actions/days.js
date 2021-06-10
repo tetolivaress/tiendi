@@ -33,7 +33,7 @@ const addDay = (payload) => {
     await getFirebase()
       .firestore()
       .collection(collectionName)
-      .add({...payload})
+      .add({...payload, createdAt: new Date()})
     dispatch(hideLoading())
   }
 }
@@ -46,7 +46,8 @@ const updateDay = (payload) => {
       .collection(collectionName)
       .doc(payload.id)
       .update({
-        name: payload.name
+        name: payload.name,
+        updatedAt: new Date()
       })
     dispatch(hideLoading())
   }

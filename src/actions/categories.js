@@ -40,7 +40,8 @@ const addCategory = (payload) => {
     await getFirebase().firestore().collection('tiendicategories').add({
       name: payload.name,
       image: imageUrl || '',
-      order: payload.order
+      order: payload.order,
+      createdAt: new Date()
     })
 
     dispatch(hideLoading())
@@ -61,7 +62,8 @@ const updateCategory = (payload) => {
       .update({
         name: payload.name,
         order: payload.order,
-        image: imageUrl
+        image: imageUrl,
+        updatedAt: new Date()
       })
     dispatch(hideLoading())
   }

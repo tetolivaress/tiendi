@@ -74,7 +74,9 @@ const addClothes = (payload) => {
         available: payload.available,
         discount: payload.discount,
         colors: payload.colors,
-        sizes: payload.sizes
+        sizes: payload.sizes,
+        createdAt: new Date(),
+        updatedAt: null
       })
     dispatch(hideLoading())
   }
@@ -97,7 +99,8 @@ const updateClothing = (payload) => {
         available: payload.available,
         discount: payload.discount,
         colors: payload.colors,
-        sizes: payload.sizes
+        sizes: payload.sizes,
+        updatedAt: new Date()
       })
     dispatch(hideLoading())
   }
