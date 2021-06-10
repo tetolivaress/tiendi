@@ -9,6 +9,7 @@ const getLocations = () => {
       .firestore()
       .collection(collectionName)
       .get()
+    dispatch({ type: 'LOAD_LOCATIONS', payload: locationsResponse.docs })
     dispatch(hideLoading())
     return locationsResponse
   }

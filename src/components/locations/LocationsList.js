@@ -1,29 +1,23 @@
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import LocationDetail from './LocationDetail'
 import AddLocationBtn from './AddLocationBtn'
-import { getLocations as loadLocations } from '@actions/locations'
+import { getLocations } from '@actions/locations'
 
 const LocationsList = () => {
-  const [locations, setLocations] = useState([])
   const dispatch = useDispatch()
+  const locations = useSelector(({ locations }) => locations.locations)
+
+  const loadLocations = async () => {
+    await dispatch(getLocations())
+  }
 
   useEffect(() => {
-    const getLocations = async () => {
-      setLocations([])
-      try {
-        const locationsResponse = await dispatch(loadLocations())
-        locationsResponse.docs.forEach(async doc => {
-          const location = doc.data()
-          setLocations(oldLocations => [...oldLocations, {...location, id: doc.id}])
-        })
-      } catch (error) {
-        console.log(error)
-      }
-    }
-    getLocations()
-  }, [dispatch]);
+    
+    loadLocations()
+  }, [])
+
 
   return (
     <div className="md:mx-60">
