@@ -30,6 +30,7 @@ const WareHouseForm = ({
           placeholder="title"
           value={form.title}
           onChange={onChange}
+          required
         />
         <input
           className="form-control"
@@ -38,6 +39,7 @@ const WareHouseForm = ({
           placeholder="price"
           onChange={onChange}
           value={form.price}
+          required
         />
         <input
           className="form-control"
@@ -46,6 +48,7 @@ const WareHouseForm = ({
           placeholder="discount"
           onChange={onChange}
           value={form.discount}
+          required
         />
         <label htmlFor="image" className="bg-red-500 m-5 p-5 hover:transform hover:scale-105 transition-all duration-150S">
           selecciona una imagen
@@ -61,6 +64,7 @@ const WareHouseForm = ({
           name="categoryId"
           placeholder="category"
           onChange={onChange}
+          required
         >
           {
             categories && categories.map(({ id, name }) =>
@@ -75,6 +79,7 @@ const WareHouseForm = ({
           placeholder="description"
           onChange={onChange}
           value={form.description}
+          required
         />
 
         <CKEditor

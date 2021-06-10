@@ -7,7 +7,7 @@ const WareHouse = () => {
     <>
       <h1>Warehouse clothes list</h1>
       <WareHouseList />
-      <Link to="/backoffice/warehouse/add">
+      <Link to="/warehouse/add">
         <AddBtn />
       </Link>
     </>

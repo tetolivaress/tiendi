@@ -1,4 +1,5 @@
 import { showLoading, hideLoading } from '@actions/loading'
+import slugify from '@utils/Slugify'
 
 const collectionName = 'clothes'
 
@@ -51,10 +52,30 @@ const getClothing = (id) => {
 const addClothes = (payload) => {
   return async (dispatch, getState, getFirebase) => {
     dispatch(showLoading())
+    let clothingImages = []
+    await payload.images.forEach(async (image, index) => {
+      let storageRef = await getFirebase().storage()
+      .ref(`tiendiImages/clothes/${slugify(payload.title+index)}`)
+      let task = await storageRef.putString(image, 'data_url')
+      clothingImages.push(await task.task.snapshot.ref.getDownloadURL())
+      // clothingImages.push(url)
+    })
+    console.log(clothingImages)
     await getFirebase()
       .firestore()
       .collection(collectionName)
-      .add(payload)
+      .add({
+        title: payload.title,
+        price: payload.price,
+        images: clothingImages,
+        categoryId: payload.categoryId,
+        description: payload.description,
+        details: payload.details,
+        available: payload.available,
+        discount: payload.discount,
+        colors: payload.colors,
+        sizes: payload.sizes
+      })
     dispatch(hideLoading())
   }
 }
