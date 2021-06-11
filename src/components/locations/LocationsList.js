@@ -14,7 +14,6 @@ const LocationsList = () => {
   }
 
   useEffect(() => {
-    
     loadLocations()
   }, [])
 

@@ -9,7 +9,7 @@ const getLocations = () => {
       .firestore()
       .collection(collectionName)
       .get()
-    dispatch({ type: 'LOAD_LOCATIONS', payload: locationsResponse.docs })
+      dispatch({ type: 'LOAD_LOCATIONS', payload: locationsResponse.docs })
     dispatch(hideLoading())
     return locationsResponse
   }
@@ -31,10 +31,14 @@ const getLocation = (id) => {
 const addLocation = (payload) => {
   return async (dispatch, getState, getFirebase) => {
     dispatch(showLoading())
+    const timestamp = getFirebase().firestore.FieldValue.serverTimestamp()
     await getFirebase()
       .firestore()
       .collection(collectionName)
-      .add({...payload, createdAt: new Date()})
+      .add({
+        ...payload,
+        createdAt: timestamp
+      })
     dispatch(hideLoading())
   }
 }
