@@ -30,17 +30,19 @@ const getDay = (id) => {
 
 const addDay = (payload) => {
   return async (dispatch, getState, getFirebase) => {
+    const timestamp = getFirebase().firestore.FieldValue.serverTimestamp()
     dispatch(showLoading())
     await getFirebase()
       .firestore()
       .collection(collectionName)
-      .add({...payload, createdAt: new Date()})
+      .add({...payload, createdAt: timestamp})
     dispatch(hideLoading())
   }
 }
 
 const updateDay = (payload) => {
   return async (dispatch, getState, getFirebase) => {
+    const timestamp = await getFirebase().firestore.FieldValue.serverTimestamp()
     dispatch(showLoading())
     await getFirebase()
       .firestore()
@@ -48,7 +50,7 @@ const updateDay = (payload) => {
       .doc(payload.id)
       .update({
         name: payload.name,
-        updatedAt: new Date()
+        updatedAt: timestamp
       })
     dispatch(hideLoading())
   }

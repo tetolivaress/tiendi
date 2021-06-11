@@ -31,7 +31,7 @@ const getLocation = (id) => {
 const addLocation = (payload) => {
   return async (dispatch, getState, getFirebase) => {
     dispatch(showLoading())
-    const timestamp = getFirebase().firestore.FieldValue.serverTimestamp()
+    const timestamp = await getFirebase().firestore.FieldValue.serverTimestamp()
     await getFirebase()
       .firestore()
       .collection(collectionName)
@@ -45,6 +45,7 @@ const addLocation = (payload) => {
 
 const updateLocation = (payload) => {
   return async (dispatch, getState, getFirebase) => {
+    const timestamp = await getFirebase().firestore.FieldValue.serverTimestamp()
     dispatch(showLoading())
     await getFirebase()
       .firestore()
@@ -52,7 +53,7 @@ const updateLocation = (payload) => {
       .doc(payload.id)
       .update({
         name: payload.name,
-        updatedAt: new Date()
+        updatedAt: timestamp
       })
     dispatch(hideLoading())
   }

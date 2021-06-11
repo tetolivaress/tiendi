@@ -51,6 +51,7 @@ const getClothing = (id) => {
 
 const addClothes = (payload) => {
   return async (dispatch, getState, getFirebase) => {
+    const timestamp = getFirebase().firestore.FieldValue.serverTimestamp()
     dispatch(showLoading())
     let clothingImages = []
     await payload.images.forEach(async (image, index) => {
@@ -75,7 +76,7 @@ const addClothes = (payload) => {
         discount: payload.discount,
         colors: payload.colors,
         sizes: payload.sizes,
-        createdAt: new Date(),
+        createdAt: timestamp,
         updatedAt: null
       })
     dispatch(hideLoading())
@@ -84,6 +85,7 @@ const addClothes = (payload) => {
 
 const updateClothing = (payload) => {
   return async (dispatch, getState, getFirebase) => {
+    const timestamp = await getFirebase().firestore.FieldValue.serverTimestamp()
     dispatch(showLoading())
     await getFirebase()
       .firestore()
@@ -100,7 +102,7 @@ const updateClothing = (payload) => {
         discount: payload.discount,
         colors: payload.colors,
         sizes: payload.sizes,
-        updatedAt: new Date()
+        updatedAt: timestamp
       })
     dispatch(hideLoading())
   }
