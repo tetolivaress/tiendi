@@ -5,7 +5,7 @@ const LocationDetail = ({ location }) => {
   return (
     <section className='grid grid-cols-3 shadow-sm m-4 items-center'>
       <div className='col-span-2'>
-        <h2 className="overflow-clip">{location.name} {location.createdAt}</h2>
+        <h2 className="overflow-clip">{location.name}</h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 justify-items-end gap-1">
         <Link to={`/backoffice/locations/edit/${location.id}`} className="list-action-button bg-green-500 font-semibold">

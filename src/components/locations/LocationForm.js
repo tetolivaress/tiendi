@@ -1,18 +1,23 @@
-const LocationForm = ({ form: { name }, onChange, onSubmit }) => {
+const LocationForm = ({ formik }) => {
   return (
     <>
-      <form onSubmit={onSubmit} className="w-screen px-2">
+      <form onSubmit={formik.handleSubmit} className="w-screen px-2">
         <div className="flex flex-col">
           <input
             type="text"
             name="name"
             placeholder="Caracas, 10:00am - 6:00pm"
-            value={name}
-            onChange={onChange}
+            value={formik.values.name}
+            onChange={formik.handleChange}
             className="form-control"
             required
           />
-          <button className="bg-green-500 p-2 rounded-md font-bold grow text-white m-auto">Guardar</button>
+          {formik.errors.name ? <div className="text-red-500 font-bold">{formik.errors.name}</div> : null}
+          <button
+            className="bg-green-500 p-2 rounded-md font-bold grow text-white m-auto"
+            type="submit">
+            Guardar
+          </button>
         </div>
       </form>
     </>
