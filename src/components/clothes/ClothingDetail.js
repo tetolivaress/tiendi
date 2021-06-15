@@ -21,7 +21,7 @@ const Clothing = ({ clothing }) =>{
     <div className="flex flex-col align-middle text-center shadow-md">
       {
         clothing.image
-          ? <img src={clothing.images[0]}
+          ? <img src={clothing.image}
               alt={`${clothing.category} of tiendi shop`}
               className="object-contain max-h-60"
             />
