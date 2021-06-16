@@ -9,10 +9,11 @@ const LocationForm = ({ formik }) => {
             placeholder="Caracas, 10:00am - 6:00pm"
             value={formik.values.name}
             onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
             className="form-control"
             required
           />
-          {formik.errors.name ? <div className="text-red-500 font-bold">{formik.errors.name}</div> : null}
+          {formik.touched.name && formik.errors.name ? <div className="text-red-500 font-bold">{formik.errors.name}</div> : null}
           <button
             className="bg-green-500 p-2 rounded-md font-bold grow text-white m-auto"
             type="submit">
